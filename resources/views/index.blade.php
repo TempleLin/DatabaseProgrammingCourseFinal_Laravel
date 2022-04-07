@@ -11,7 +11,7 @@
 @endsection
 
 @section('page_end_declares')
-    <script src="{{asset('js/jsx/image_gallery.js')}}" type="text/babel"></script>
+{{--    <script src="{{asset('js/jsx/image_gallery.js')}}" type="text/babel"></script>--}}
     <script src="{{asset('js/animations.js')}}"></script>
 @endsection
 
