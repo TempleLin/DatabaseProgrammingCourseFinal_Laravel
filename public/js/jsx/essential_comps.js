@@ -11,25 +11,25 @@ class TopNavBar extends Component {
     }
     render() {
         return (
-            <nav className="navbar">
-                <form className="form-inline">
-                    <form action="/" method={'GET'}>
+            <nav className={"navbar"}>
+                <form className="d-flex">
+                    <form action="/" method={'GET'} className={'top_nav_left_padding'}>
                         <input className="btn btn-outline-success text-light round-btn" type="submit" value="Home" />
                     </form>
-                    <button className="btn btn-sm btn-outline-secondary text-light round-btn" type="button"
-                            onClick="location.href = 'viewAttendees.php';">Musics
-                    </button>
-                    <button className="btn btn-sm btn-outline-secondary text-light round-btn" type="button"
-                            onClick="location.href = 'viewAttendees.php';">Sounds
-                    </button>
+                    <form action="/musics" method={'GET'} className={'top_nav_left_padding top_nav_top_padding'}>
+                        <input className="btn btn-sm btn-outline-secondary text-light round-btn" type="submit" value="Musics" />
+                    </form>
+                    <form action="/sounds" method={'GET'} className={'top_nav_left_padding top_nav_top_padding'}>
+                        <input className="btn btn-sm btn-outline-secondary text-light round-btn" type="submit" value="Sounds" />
+                    </form>
                 </form>
                 <form className="d-flex">
                     <form action="/uploading" method={'GET'}>
                         <input className="btn btn-outline-success text-light round-btn" type="submit" value="Upload" />
                     </form>
-                    <button className="btn btn-outline-success text-light form-inline round-btn"
-                            type="button">Login/Register
-                    </button>
+                    <form action="/login_register" method={'GET'}>
+                        <input className="btn btn-outline-success text-light form-inline round-btn" type="submit" value="Login/Register" />
+                    </form>
                 </form>
             </nav>
         );

@@ -39,9 +39,14 @@ For placing element in center of page.
 ---------------------------------------------
  */
 
-//Enlarge "Start Tour!" button.
-.startTourBtn {
-  padding: 1.5rem;
+/**
+Slight padding offsets to the navbar buttons on top left corner.
+ */
+.top_nav_left_padding {
+    padding-left: 0.2rem;
+}
+.top_nav_top_padding {
+    padding-top: 0.2rem;
 }
 
 #tsparticles {
