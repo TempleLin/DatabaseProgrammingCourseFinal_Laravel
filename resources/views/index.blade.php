@@ -9,3 +9,10 @@
     <div id="root"></div>
 </div>
 @endsection
+
+@section('page_end_declares')
+<script src="{{asset('js/jsx/index.js')}}" type="text/babel"></script>
+<script src="{{asset('js/animations.js')}}"></script>
+@endsection
+
+@include('includes/page_end')
