@@ -15,4 +15,6 @@
     <script src="{{asset('js/animations.js')}}"></script>
 @endsection
 
+{{--Add additional page-owned js-related declarations here.--}}
+
 @include('includes/page_end')

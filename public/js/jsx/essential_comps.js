@@ -160,12 +160,12 @@ class SideNav extends Component {
     }
     render() {
         return (
-            <Fragment>
+            <div className={'sidenav'}>
                 <a href={'#'}>About</a>
                 <a href={'#'}>Services</a>
                 <a href={'#'}>Clients</a>
                 <a href={'#'}>Contact</a>
-            </Fragment>
+            </div>
         );
     }
 }
@@ -177,16 +177,11 @@ function Footer() {
 }
 
 ReactDOM.render(
-    <SideNav/>, document.querySelector('.sidenav')
-);
-
-ReactDOM.render(
     <Fragment>
         <TopNavBar/>
+        <SideNav/>
         <div>
             <ImagesContainer/>
             <Footer/>
         </div>
-    </Fragment>
-
-    , document.querySelector("#root"));
+    </Fragment>, document.querySelector("#root"));
