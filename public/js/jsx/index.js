@@ -4,6 +4,8 @@ const {
 } = React;
 
 class TopNavBar extends Component {
+    uploadPage = '{{ route(\'upload\') }}';
+
     componentDidMount() {
         CompsAnims.slowlySlideInNavbar();
     }
@@ -23,7 +25,7 @@ class TopNavBar extends Component {
                 </form>
                 <form className="d-flex">
                     <button className="btn btn-outline-success text-light round-btn" type="button"
-                            onClick="location.href = 'upload.php';">Upload
+                            onClick={window.location=this.uploadPage;}>Upload
                     </button>
                     <button className="btn btn-outline-success text-light form-inline round-btn"
                             type="button">Login/Register

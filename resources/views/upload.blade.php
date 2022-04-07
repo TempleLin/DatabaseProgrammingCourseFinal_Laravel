@@ -4,7 +4,7 @@ require_once './includes/header.blade.php';
 ?>
 
 <div class="center">
-    <form name="form" method="post" action="upload.php" enctype="multipart/form-data" class="form-group">
+    <form name="form" method="post" action="upload.blade.php" enctype="multipart/form-data" class="form-group">
         <input type="file" name="my_file" /><br /><br />
         <input type="submit" name="submit" value="Upload" class="btn btn-primary"/>
     </form>
