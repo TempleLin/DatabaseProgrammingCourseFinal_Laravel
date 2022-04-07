@@ -176,12 +176,18 @@ function Footer() {
     )
 }
 
+function SinglePage() {
+    return (
+        <Fragment>
+            <TopNavBar/>
+            <SideNav/>
+            <div>
+                <ImagesContainer/>
+                <Footer/>
+            </div>
+        </Fragment>
+    );
+}
+
 ReactDOM.render(
-    <Fragment>
-        <TopNavBar/>
-        <SideNav/>
-        <div>
-            <ImagesContainer/>
-            <Footer/>
-        </div>
-    </Fragment>, document.querySelector("#root"));
+    <SinglePage/>, document.querySelector("#root"));
