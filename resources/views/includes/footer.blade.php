@@ -20,3 +20,5 @@
 <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
+{{--Essential React component across all pages.--}}
+<script src="{{asset('js/jsx/essential_comps.js')}}" type="text/babel"></script>
