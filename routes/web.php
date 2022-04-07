@@ -1,18 +1,13 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+/**
+ * Note:
+ *  Sometimes route might have cache causing errors, need to type: "php artisan route:clear" in terminal.
+ */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [PageController::class, 'homePage']);
+
+Route::get('/uploading', [PageController::class, 'uploadPage']);

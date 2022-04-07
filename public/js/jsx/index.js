@@ -24,9 +24,12 @@ class TopNavBar extends Component {
                     </button>
                 </form>
                 <form className="d-flex">
-                    <button className="btn btn-outline-success text-light round-btn" type="button"
-                            onClick={window.location=this.uploadPage;}>Upload
-                    </button>
+                    <form action="/uploading" method={'GET'}>
+                        <input className="btn btn-outline-success text-light round-btn" type="submit" value="Upload" />
+                    </form>
+                    {/*<button className="btn btn-outline-success text-light round-btn" type="button"*/}
+                    {/*        >Upload*/}
+                    {/*</button>*/}
                     <button className="btn btn-outline-success text-light form-inline round-btn"
                             type="button">Login/Register
                     </button>
