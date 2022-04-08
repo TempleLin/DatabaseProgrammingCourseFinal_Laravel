@@ -124,15 +124,18 @@ class ImagesContainer extends Component{
 }
 
 class TopNavBar extends Component {
+    constructor(props) {
+        super(props);
+    }
     componentDidMount() {
         CompsAnims.slowlySlideInNavbar();
     }
     render() {
         return (
             <nav className={"navbar"}>
-                <form className="d-flex">
+                <div className="d-flex">
                     <form action="/" method={'GET'} className={'top_nav_left_padding'}>
-                        <input className="btn btn-outline-success text-light round-btn" type="submit" value="Home" />
+                        <input className="btn btn-outline-success text-light round-btn" type="submit" value="Home"/>
                     </form>
                     <form action="/musics" method={'GET'} className={'top_nav_left_padding top_nav_top_padding'}>
                         <input className="btn btn-sm btn-outline-secondary text-light round-btn" type="submit" value="Musics" />
@@ -140,15 +143,17 @@ class TopNavBar extends Component {
                     <form action="/sounds" method={'GET'} className={'top_nav_left_padding top_nav_top_padding'}>
                         <input className="btn btn-sm btn-outline-secondary text-light round-btn" type="submit" value="Sounds" />
                     </form>
-                </form>
-                <form className="d-flex">
-                    <form action="/uploading" method={'GET'}>
-                        <input className="btn btn-outline-success text-light round-btn" type="submit" value="Upload" />
-                    </form>
+                </div>
+                <div className="d-flex">
+                    <button className="btn btn-outline-success text-light round-btn" onClick={this.props.handleUseImageContainer}>Upload</button>
+                    {/*<form action="/uploading" method={'GET'}>*/}
+                    {/*    <input className="btn btn-outline-success text-light round-btn" type="submit" value="Upload"*/}
+                    {/*           onClick={this.props.handleUseImageContainer}/>*/}
+                    {/*</form>*/}
                     <form action="/login_register" method={'GET'}>
                         <input className="btn btn-outline-success text-light form-inline round-btn" type="submit" value="Login/Register" />
                     </form>
-                </form>
+                </div>
             </nav>
         );
     }
@@ -176,18 +181,52 @@ function Footer() {
     )
 }
 
-function SinglePage() {
+function BlankComponent() {
     return (
-        <Fragment>
-            <TopNavBar/>
-            <SideNav/>
-            <div>
-                <ImagesContainer/>
-                <Footer/>
-            </div>
-        </Fragment>
+        <Fragment/>
     );
 }
+
+class SinglePage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            useImageContainer: true
+        };
+        this.handleUseImageContainer = this.handleUseImageContainer.bind(this);
+    }
+    handleUseImageContainer() {
+        this.setState({
+            useImageContainer: false
+        });
+    }
+    render() {
+        return (
+            <Fragment>
+                <TopNavBar handleUseImageContainer={this.handleUseImageContainer}/>
+                <SideNav/>
+                <div>
+                    {(this.state.useImageContainer)? <ImagesContainer/> : <BlankComponent/>}
+                    {/*<ImagesContainer/>*/}
+                    <Footer/>
+                </div>
+            </Fragment>
+        );
+    }
+}
+
+// function SinglePage() {
+//     return (
+//         <Fragment>
+//             <TopNavBar/>
+//             <SideNav/>
+//             <div>
+//                 <ImagesContainer/>
+//                 <Footer/>
+//             </div>
+//         </Fragment>
+//     );
+// }
 
 ReactDOM.render(
     <SinglePage/>, document.querySelector("#root"));
