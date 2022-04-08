@@ -4,7 +4,7 @@ const {
 } = React;
 
 //'Symbol' is similar to enum in JS.
-const IMAGE_GALLERY = Symbol('image_gallery');
+const ALL_SOUNDS_GALLERY = Symbol('all_sounds_gallery');
 const UPLOAD_PAGE = Symbol('upload_page');
 
 class TopNavBar extends Component {
@@ -18,7 +18,7 @@ class TopNavBar extends Component {
         return (
             <nav className={"navbar"}>
                 <div className="d-flex">
-                    <button className="btn btn-outline-success text-light round-btn" onClick={() => {this.props.handlerUseComp(IMAGE_GALLERY)}}>Home</button>
+                    <button className="btn btn-outline-success text-light round-btn" onClick={() => {this.props.handlerUseComp(ALL_SOUNDS_GALLERY)}}>Home</button>
                     {/*<form action="/" method={'GET'} className={'top_nav_left_padding'}>*/}
                     {/*    <input className="btn btn-outline-success text-light round-btn" type="submit" value="Home"/>*/}
                     {/*</form>*/}
@@ -196,7 +196,7 @@ class SinglePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            useComp: IMAGE_GALLERY
+            useComp: ALL_SOUNDS_GALLERY
         };
         this.handlerUseComp = this.handlerUseComp.bind(this);
     }
@@ -206,7 +206,7 @@ class SinglePage extends Component {
     render() {
         const selectWhichCompToUse = () => {
             switch (this.state.useComp) {
-                case IMAGE_GALLERY:
+                case ALL_SOUNDS_GALLERY:
                     return <ImagesContainer/>
                 case UPLOAD_PAGE:
                     return <BlankComponent/>;
