@@ -5,7 +5,7 @@ const {
 
 //'Symbol' is similar to enum in JS.
 const ALL_SOUNDS_GALLERY = Symbol('all_sounds_gallery');
-const UPLOAD_PAGE = Symbol('upload_page');
+const UPLOAD_FORM = Symbol('upload_form');
 
 class TopNavBar extends Component {
     constructor(props) {
@@ -30,7 +30,7 @@ class TopNavBar extends Component {
                     </form>
                 </div>
                 <div className="d-flex">
-                    <button className="btn btn-outline-success text-light round-btn" onClick={() => {this.props.handlerUseComp(UPLOAD_PAGE)}}>Upload</button>
+                    <button className="btn btn-outline-success text-light round-btn" onClick={() => {this.props.handlerUseComp(UPLOAD_FORM)}}>Upload</button>
                     {/*<form action="/uploading" method={'GET'}>*/}
                     {/*    <input className="btn btn-outline-success text-light round-btn" type="submit" value="Upload"*/}
                     {/*           onClick={this.props.handleUseImageContainer}/>*/}
@@ -164,6 +164,24 @@ class GalleryContainer extends Component{
     }
 }
 
+class UploadForm extends Component {
+    render() {
+        return (
+            <Fragment>
+                <div id="tsparticles"></div>
+
+                <div className="center">
+                    <form name="form" method="post" action="uploading.blade.php" encType="multipart/form-data"
+                          className="form-group">
+                        <input type="file" name="my_file" className={'whiteText'}/><br/><br/>
+                        <input type="submit" name="submit" value="Upload" className="btn btn-primary"/>
+                    </form>
+                </div>
+            </Fragment>
+        );
+    }
+}
+
 class SideNav extends Component {
     componentDidMount() {
         CompsAnims.slowlySlideInSideNav();
@@ -208,8 +226,8 @@ class SinglePage extends Component {
             switch (this.state.useComp) {
                 case ALL_SOUNDS_GALLERY:
                     return <GalleryContainer/>
-                case UPLOAD_PAGE:
-                    return <BlankComponent/>;
+                case UPLOAD_FORM:
+                    return <UploadForm/>;
             }
         };
         return (
