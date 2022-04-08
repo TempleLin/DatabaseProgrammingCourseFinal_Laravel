@@ -3,6 +3,42 @@ const {
     Fragment
 } = React;
 
+class TopNavBar extends Component {
+    constructor(props) {
+        super(props);
+    }
+    componentDidMount() {
+        CompsAnims.slowlySlideInNavbar();
+    }
+    render() {
+        return (
+            <nav className={"navbar"}>
+                <div className="d-flex">
+                    <form action="/" method={'GET'} className={'top_nav_left_padding'}>
+                        <input className="btn btn-outline-success text-light round-btn" type="submit" value="Home"/>
+                    </form>
+                    <form action="/musics" method={'GET'} className={'top_nav_left_padding top_nav_top_padding'}>
+                        <input className="btn btn-sm btn-outline-secondary text-light round-btn" type="submit" value="Musics" />
+                    </form>
+                    <form action="/sounds" method={'GET'} className={'top_nav_left_padding top_nav_top_padding'}>
+                        <input className="btn btn-sm btn-outline-secondary text-light round-btn" type="submit" value="Sounds" />
+                    </form>
+                </div>
+                <div className="d-flex">
+                    <button className="btn btn-outline-success text-light round-btn" onClick={this.props.handleUseUploadPage}>Upload</button>
+                    {/*<form action="/uploading" method={'GET'}>*/}
+                    {/*    <input className="btn btn-outline-success text-light round-btn" type="submit" value="Upload"*/}
+                    {/*           onClick={this.props.handleUseImageContainer}/>*/}
+                    {/*</form>*/}
+                    <form action="/login_register" method={'GET'}>
+                        <input className="btn btn-outline-success text-light form-inline round-btn" type="submit" value="Login/Register" />
+                    </form>
+                </div>
+            </nav>
+        );
+    }
+}
+
 class ImagesContainer extends Component{
     componentDidMount() {
         CompsAnims.slowlySlideInRoot();
@@ -123,42 +159,6 @@ class ImagesContainer extends Component{
     }
 }
 
-class TopNavBar extends Component {
-    constructor(props) {
-        super(props);
-    }
-    componentDidMount() {
-        CompsAnims.slowlySlideInNavbar();
-    }
-    render() {
-        return (
-            <nav className={"navbar"}>
-                <div className="d-flex">
-                    <form action="/" method={'GET'} className={'top_nav_left_padding'}>
-                        <input className="btn btn-outline-success text-light round-btn" type="submit" value="Home"/>
-                    </form>
-                    <form action="/musics" method={'GET'} className={'top_nav_left_padding top_nav_top_padding'}>
-                        <input className="btn btn-sm btn-outline-secondary text-light round-btn" type="submit" value="Musics" />
-                    </form>
-                    <form action="/sounds" method={'GET'} className={'top_nav_left_padding top_nav_top_padding'}>
-                        <input className="btn btn-sm btn-outline-secondary text-light round-btn" type="submit" value="Sounds" />
-                    </form>
-                </div>
-                <div className="d-flex">
-                    <button className="btn btn-outline-success text-light round-btn" onClick={this.props.handleUseImageContainer}>Upload</button>
-                    {/*<form action="/uploading" method={'GET'}>*/}
-                    {/*    <input className="btn btn-outline-success text-light round-btn" type="submit" value="Upload"*/}
-                    {/*           onClick={this.props.handleUseImageContainer}/>*/}
-                    {/*</form>*/}
-                    <form action="/login_register" method={'GET'}>
-                        <input className="btn btn-outline-success text-light form-inline round-btn" type="submit" value="Login/Register" />
-                    </form>
-                </div>
-            </nav>
-        );
-    }
-}
-
 class SideNav extends Component {
     componentDidMount() {
         CompsAnims.slowlySlideInSideNav();
@@ -187,27 +187,40 @@ function BlankComponent() {
     );
 }
 
+//'Symbol' is similar to enum in JS.
+const IMAGE_GALLERY = Symbol('image_gallery');
+const UPLOAD_PAGE = Symbol('upload_page');
+
 class SinglePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            useImageContainer: true
+            useComp: IMAGE_GALLERY
         };
-        this.handleUseImageContainer = this.handleUseImageContainer.bind(this);
+        this.handleUseUploadPage = this.handleUseUploadPage.bind(this);
     }
-    handleUseImageContainer() {
+    //Handles to be called by child components to change state and therefore change render result.
+    handleUseUploadPage() {
         this.setState({
-            useImageContainer: false
+            useComp: UPLOAD_PAGE
         });
     }
+
     render() {
+        const selectWhichCompToUse = () => {
+            switch (this.state.useComp) {
+                case IMAGE_GALLERY:
+                    return <ImagesContainer/>
+                case UPLOAD_PAGE:
+                    return <BlankComponent/>;
+            }
+        };
         return (
             <Fragment>
-                <TopNavBar handleUseImageContainer={this.handleUseImageContainer}/>
+                <TopNavBar handleUseUploadPage={this.handleUseUploadPage}/>
                 <SideNav/>
                 <div>
-                    {(this.state.useImageContainer)? <ImagesContainer/> : <BlankComponent/>}
-                    {/*<ImagesContainer/>*/}
+                    {selectWhichCompToUse()}
                     <Footer/>
                 </div>
             </Fragment>
