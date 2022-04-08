@@ -16,5 +16,3 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', [PageController::class, 'homePage']);
-
-Route::get('/uploading', [PageController::class, 'uploadPage']);
