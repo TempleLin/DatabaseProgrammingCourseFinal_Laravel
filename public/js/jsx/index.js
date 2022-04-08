@@ -44,7 +44,7 @@ class TopNavBar extends Component {
     }
 }
 
-class ImagesContainer extends Component{
+class GalleryContainer extends Component{
     componentDidMount() {
         CompsAnims.slowlySlideInRoot();
     }
@@ -207,7 +207,7 @@ class SinglePage extends Component {
         const selectWhichCompToUse = () => {
             switch (this.state.useComp) {
                 case ALL_SOUNDS_GALLERY:
-                    return <ImagesContainer/>
+                    return <GalleryContainer/>
                 case UPLOAD_PAGE:
                     return <BlankComponent/>;
             }
@@ -224,19 +224,6 @@ class SinglePage extends Component {
         );
     }
 }
-
-// function SinglePage() {
-//     return (
-//         <Fragment>
-//             <TopNavBar/>
-//             <SideNav/>
-//             <div>
-//                 <ImagesContainer/>
-//                 <Footer/>
-//             </div>
-//         </Fragment>
-//     );
-// }
 
 ReactDOM.render(
     <SinglePage/>, document.querySelector("#root"));
