@@ -18,7 +18,7 @@ class TopNavBar extends Component {
         return (
             <nav className={"navbar"}>
                 <div className="d-flex">
-                    <button className="btn btn-outline-success text-light round-btn" onClick={() => {this.props.handleUseComp(IMAGE_GALLERY)}}>Home</button>
+                    <button className="btn btn-outline-success text-light round-btn" onClick={() => {this.props.handlerUseComp(IMAGE_GALLERY)}}>Home</button>
                     {/*<form action="/" method={'GET'} className={'top_nav_left_padding'}>*/}
                     {/*    <input className="btn btn-outline-success text-light round-btn" type="submit" value="Home"/>*/}
                     {/*</form>*/}
@@ -30,7 +30,7 @@ class TopNavBar extends Component {
                     </form>
                 </div>
                 <div className="d-flex">
-                    <button className="btn btn-outline-success text-light round-btn" onClick={() => {this.props.handleUseComp(UPLOAD_PAGE)}}>Upload</button>
+                    <button className="btn btn-outline-success text-light round-btn" onClick={() => {this.props.handlerUseComp(UPLOAD_PAGE)}}>Upload</button>
                     {/*<form action="/uploading" method={'GET'}>*/}
                     {/*    <input className="btn btn-outline-success text-light round-btn" type="submit" value="Upload"*/}
                     {/*           onClick={this.props.handleUseImageContainer}/>*/}
@@ -198,10 +198,10 @@ class SinglePage extends Component {
         this.state = {
             useComp: IMAGE_GALLERY
         };
-        this.handleUseComp = this.handleUseComp.bind(this);
+        this.handlerUseComp = this.handlerUseComp.bind(this);
     }
     //Handle to be called by child component to change state and therefore change render result.
-    handleUseComp(comp) { this.setState({useComp: comp}); }
+    handlerUseComp(comp) { this.setState({useComp: comp}); }
 
     render() {
         const selectWhichCompToUse = () => {
@@ -214,7 +214,7 @@ class SinglePage extends Component {
         };
         return (
             <Fragment>
-                <TopNavBar handleUseComp={this.handleUseComp}/>
+                <TopNavBar handlerUseComp={this.handlerUseComp}/>
                 <SideNav/>
                 <div>
                     {selectWhichCompToUse()}
