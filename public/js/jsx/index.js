@@ -165,6 +165,9 @@ class GalleryContainer extends Component{
 }
 
 class UploadForm extends Component {
+    componentDidMount() {
+        CompsAnims.slowlySlideInUploadForm();
+    }
     render() {
         return (
             <Fragment>
@@ -172,7 +175,7 @@ class UploadForm extends Component {
 
                 <div className="center">
                     <form name="form" method="post" action="uploading.blade.php" encType="multipart/form-data"
-                          className="form-group">
+                          className="form-group upload_form">
                         <input type="file" name="my_file" className={'whiteText'}/><br/><br/>
                         <input type="submit" name="submit" value="Upload" className="btn btn-primary"/>
                     </form>
