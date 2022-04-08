@@ -3,6 +3,10 @@ const {
     Fragment
 } = React;
 
+//'Symbol' is similar to enum in JS.
+const IMAGE_GALLERY = Symbol('image_gallery');
+const UPLOAD_PAGE = Symbol('upload_page');
+
 class TopNavBar extends Component {
     constructor(props) {
         super(props);
@@ -14,9 +18,10 @@ class TopNavBar extends Component {
         return (
             <nav className={"navbar"}>
                 <div className="d-flex">
-                    <form action="/" method={'GET'} className={'top_nav_left_padding'}>
-                        <input className="btn btn-outline-success text-light round-btn" type="submit" value="Home"/>
-                    </form>
+                    <button className="btn btn-outline-success text-light round-btn" onClick={() => {this.props.handleUseComp(IMAGE_GALLERY)}}>Home</button>
+                    {/*<form action="/" method={'GET'} className={'top_nav_left_padding'}>*/}
+                    {/*    <input className="btn btn-outline-success text-light round-btn" type="submit" value="Home"/>*/}
+                    {/*</form>*/}
                     <form action="/musics" method={'GET'} className={'top_nav_left_padding top_nav_top_padding'}>
                         <input className="btn btn-sm btn-outline-secondary text-light round-btn" type="submit" value="Musics" />
                     </form>
@@ -25,7 +30,7 @@ class TopNavBar extends Component {
                     </form>
                 </div>
                 <div className="d-flex">
-                    <button className="btn btn-outline-success text-light round-btn" onClick={this.props.handleUseUploadPage}>Upload</button>
+                    <button className="btn btn-outline-success text-light round-btn" onClick={() => {this.props.handleUseComp(UPLOAD_PAGE)}}>Upload</button>
                     {/*<form action="/uploading" method={'GET'}>*/}
                     {/*    <input className="btn btn-outline-success text-light round-btn" type="submit" value="Upload"*/}
                     {/*           onClick={this.props.handleUseImageContainer}/>*/}
@@ -187,24 +192,16 @@ function BlankComponent() {
     );
 }
 
-//'Symbol' is similar to enum in JS.
-const IMAGE_GALLERY = Symbol('image_gallery');
-const UPLOAD_PAGE = Symbol('upload_page');
-
 class SinglePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             useComp: IMAGE_GALLERY
         };
-        this.handleUseUploadPage = this.handleUseUploadPage.bind(this);
+        this.handleUseComp = this.handleUseComp.bind(this);
     }
-    //Handles to be called by child components to change state and therefore change render result.
-    handleUseUploadPage() {
-        this.setState({
-            useComp: UPLOAD_PAGE
-        });
-    }
+    //Handle to be called by child component to change state and therefore change render result.
+    handleUseComp(comp) { this.setState({useComp: comp}); }
 
     render() {
         const selectWhichCompToUse = () => {
@@ -217,7 +214,7 @@ class SinglePage extends Component {
         };
         return (
             <Fragment>
-                <TopNavBar handleUseUploadPage={this.handleUseUploadPage}/>
+                <TopNavBar handleUseComp={this.handleUseComp}/>
                 <SideNav/>
                 <div>
                     {selectWhichCompToUse()}
