@@ -18,7 +18,7 @@ class TopNavBar extends Component {
         return (
             <nav className={"navbar"}>
                 <div className="d-flex">
-                    <button className="btn btn-outline-success text-light round-btn" onClick={() => {this.props.handlerUseComp(ALL_SOUNDS_GALLERY)}}>Home</button>
+                    <button className="btn btn-outline-success text-light round-btn" onClick={() => {this.props.handlerUseContent(ALL_SOUNDS_GALLERY)}}>Home</button>
                     {/*<form action="/" method={'GET'} className={'top_nav_left_padding'}>*/}
                     {/*    <input className="btn btn-outline-success text-light round-btn" type="submit" value="Home"/>*/}
                     {/*</form>*/}
@@ -30,7 +30,7 @@ class TopNavBar extends Component {
                     </form>
                 </div>
                 <div className="d-flex">
-                    <button className="btn btn-outline-success text-light round-btn" onClick={() => {this.props.handlerUseComp(UPLOAD_FORM)}}>Upload</button>
+                    <button className="btn btn-outline-success text-light round-btn" onClick={() => {this.props.handlerUseContent(UPLOAD_FORM)}}>Upload</button>
                     {/*<form action="/uploading" method={'GET'}>*/}
                     {/*    <input className="btn btn-outline-success text-light round-btn" type="submit" value="Upload"*/}
                     {/*           onClick={this.props.handleUseImageContainer}/>*/}
@@ -176,7 +176,19 @@ class UploadForm extends Component {
                 <div className="center">
                     <form name="form" method="post" action="uploading.blade.php" encType="multipart/form-data"
                           className="form-group upload_form">
-                        <input type="file" name="my_file" className={'whiteText'}/><br/><br/>
+                        <label htmlFor={'picFileSelect'} className={'whiteText'}>Select Thumbnail</label> <br/>
+                        <input type="file" name="myImageFile" className={'whiteText'} id={'picFileSelect'}/><br/><br/>
+
+                        <label htmlFor={'soundFileSelect'} className={'whiteText'}>Select Sound File</label> <br/>
+                        <input type="file" name="mySoundFile" className={'whiteText'} id={'soundFileSelect'}/><br/><br/>
+
+                        <input type="radio" value={'Music'} name={'soundType'} id={'musicSound'}/>
+                        <label htmlFor={'musicSound'} className={'whiteText'}>Music</label>
+                        <br/>
+                        <input type="radio" value={'Sound'} className={'whiteText'} name={'soundType'} id={'soundSound'}/>
+                        <label htmlFor={'soundSound'} className={'whiteText'}>Sound</label>
+                        <br/>
+                        <br/>
                         <input type="submit" name="submit" value="Upload" className="btn btn-primary"/>
                     </form>
                 </div>
@@ -217,15 +229,15 @@ class SinglePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            useComp: ALL_SOUNDS_GALLERY
+            useContent: ALL_SOUNDS_GALLERY
         };
     }
     //Handle to be called by child component to change state and therefore change render result.
-    handlerUseComp = (comp) => { this.setState({useComp: comp}); }
+    handlerUseContent = (comp) => { this.setState({useContent: comp}); }
 
     render() {
-        const selectWhichCompToUse = () => {
-            switch (this.state.useComp) {
+        const selectWhichContentToUse = () => {
+            switch (this.state.useContent) {
                 case ALL_SOUNDS_GALLERY:
                     return <GalleryContainer/>
                 case UPLOAD_FORM:
@@ -234,10 +246,10 @@ class SinglePage extends Component {
         };
         return (
             <Fragment>
-                <TopNavBar handlerUseComp={this.handlerUseComp}/>
+                <TopNavBar handlerUseContent={this.handlerUseContent}/>
                 <SideNav/>
                 <div>
-                    {selectWhichCompToUse()}
+                    {selectWhichContentToUse()}
                     <Footer/>
                 </div>
             </Fragment>
