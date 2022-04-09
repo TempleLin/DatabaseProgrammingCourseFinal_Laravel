@@ -219,10 +219,9 @@ class SinglePage extends Component {
         this.state = {
             useComp: ALL_SOUNDS_GALLERY
         };
-        this.handlerUseComp = this.handlerUseComp.bind(this);
     }
     //Handle to be called by child component to change state and therefore change render result.
-    handlerUseComp(comp) { this.setState({useComp: comp}); }
+    handlerUseComp = (comp) => { this.setState({useComp: comp}); }
 
     render() {
         const selectWhichCompToUse = () => {
