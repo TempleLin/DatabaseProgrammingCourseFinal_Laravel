@@ -32,6 +32,10 @@ class FileController extends Controller
             return 'FILE UNMATCHED';
         }
 
+        //TODO: upload column of this name along with pic file and sound file to table.
+        $uploadName = $request->get('nameForUpload');
+        error_log("Given upload name: $uploadName");
+
         $time = time();
         $picFileName = $time . '_' . $picFile->getClientOriginalName();
         $soundFileName = $time . '_' . $soundFile->getClientOriginalName();
