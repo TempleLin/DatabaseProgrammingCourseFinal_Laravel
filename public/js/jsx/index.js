@@ -167,6 +167,36 @@ class GalleryContainer extends Component{
 class UploadForm extends Component {
     componentDidMount() {
         CompsAnims.slowlySlideInUploadForm();
+
+        //Prevent default form submits, use ajax to send json request.
+        $('#upload_form').on('submit', function(e){
+            e.preventDefault();
+
+            let $this = $(this); //alias form reference
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') //CSRF Token related to Laravel.
+                },
+                url:'/upload_file',
+                method: "POST",
+                dataType: 'text',
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
+                success:function (data) {
+                    console.log(data);
+                },error:function(data){
+                    console.log(data);
+                }
+            }).done( function (response) {
+                if (response.hasOwnProperty('status')) {
+                    // $('#target-div').html(response.status); //5
+                    console.log(response.status);
+                }
+                console.log('DONE UPLOAD!');
+            });
+        });
     }
     render() {
         return (
@@ -174,13 +204,13 @@ class UploadForm extends Component {
                 <div id="tsparticles"></div>
 
                 <div className="center">
-                    <form name="form" method="post" action="uploading.blade.php" encType="multipart/form-data"
-                          className="form-group upload_form">
+                    <form name="form" method="post" action="/upload_file" encType="multipart/form-data"
+                          className="form-group upload_form" id={'upload_form'}>
                         <label htmlFor={'picFileSelect'} className={'whiteText'}>Select Thumbnail</label> <br/>
-                        <input type="file" name="myImageFile" className={'whiteText'} id={'picFileSelect'}/><br/><br/>
+                        <input type="file" name="picFileSelect" className={'whiteText'} id={'picFileSelect'}/><br/><br/>
 
                         <label htmlFor={'soundFileSelect'} className={'whiteText'}>Select Sound File</label> <br/>
-                        <input type="file" name="mySoundFile" className={'whiteText'} id={'soundFileSelect'}/><br/><br/>
+                        <input type="file" name="soundFileSelect" className={'whiteText'} id={'soundFileSelect'}/><br/><br/>
 
                         <input type="radio" value={'Music'} name={'soundType'} id={'musicSound'}/>
                         <label htmlFor={'musicSound'} className={'whiteText'}>Music</label>
