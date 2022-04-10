@@ -185,16 +185,20 @@ class UploadForm extends Component {
                 processData: false,
                 contentType: false,
                 success:function (data) {
-                    console.log(data);
+                    switch (data) {
+                        case 'FILE NULL':
+                            alert('One or both uploaded files are NULL!');
+                            break;
+                        case 'FILE UNMATCHED':
+                            alert('Filetype unmatched!');
+                            break;
+                        case 'SUCCESS':
+                            alert('Upload success!');
+                            break;
+                    }
                 },error:function(data){
                     console.log(data);
                 }
-            }).done( function (response) {
-                if (response.hasOwnProperty('status')) {
-                    // $('#target-div').html(response.status); //5
-                    console.log(response.status);
-                }
-                console.log('DONE UPLOAD!');
             });
         });
     }
@@ -206,16 +210,16 @@ class UploadForm extends Component {
                 <div className="center">
                     <form name="form" method="post" action="/upload_file" encType="multipart/form-data"
                           className="form-group upload_form" id={'upload_form'}>
-                        <label htmlFor={'picFileSelect'} className={'whiteText'}>Select Thumbnail</label> <br/>
-                        <input type="file" name="picFileSelect" className={'whiteText'} id={'picFileSelect'}/><br/><br/>
+                        <label htmlFor={'picFileSelect'} className={'whiteText'}>Select Thumbnail (.jpg, .png., .svg)</label> <br/>
+                        <input type="file" name="picFileSelect" className={'whiteText'} id={'picFileSelect'} required={true}/><br/><br/>
 
-                        <label htmlFor={'soundFileSelect'} className={'whiteText'}>Select Sound File</label> <br/>
-                        <input type="file" name="soundFileSelect" className={'whiteText'} id={'soundFileSelect'}/><br/><br/>
+                        <label htmlFor={'soundFileSelect'} className={'whiteText'}>Select Sound File (.mp3, .wav, .aac)</label> <br/>
+                        <input type="file" name="soundFileSelect" className={'whiteText'} id={'soundFileSelect'} required={true}/><br/><br/>
 
-                        <input type="radio" value={'Music'} name={'soundType'} id={'musicSound'}/>
+                        <input type="radio" value={'Music'} name={'soundType'} id={'musicSound'} required={true}/>
                         <label htmlFor={'musicSound'} className={'whiteText'}>Music</label>
                         <br/>
-                        <input type="radio" value={'Sound'} className={'whiteText'} name={'soundType'} id={'soundSound'}/>
+                        <input type="radio" value={'Sound'} className={'whiteText'} name={'soundType'} id={'soundSound'} required={true}/>
                         <label htmlFor={'soundSound'} className={'whiteText'}>Sound</label>
                         <br/>
                         <br/>
