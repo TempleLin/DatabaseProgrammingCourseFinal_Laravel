@@ -210,6 +210,11 @@ class UploadForm extends Component {
                 <div className="center">
                     <form name="form" method="post" action="/upload_file" encType="multipart/form-data"
                           className="form-group upload_form" id={'upload_form'}>
+                        <label htmlFor={'nameForResource'} className={'whiteText'}>Name for your upload: &nbsp;</label>
+                        <input type="text" name={'nameForResource'} className={'whiteText'} id={'nameForResource'} placeholder={'enter a name'} required={true}/>
+                        <br/>
+                        <br/>
+
                         <label htmlFor={'picFileSelect'} className={'whiteText'}>Select Thumbnail (.jpg, .png., .svg)</label> <br/>
                         <input type="file" name="picFileSelect" className={'whiteText'} id={'picFileSelect'} required={true}/><br/><br/>
 

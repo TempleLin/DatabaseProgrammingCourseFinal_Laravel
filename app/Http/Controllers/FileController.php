@@ -18,7 +18,7 @@ class FileController extends Controller
 
         $picFileExtension = $picFile->extension();
         $soundFileExtension = $soundFile->extension();
-        error_log("File extensions: $picFileExtension, $soundFileExtension");
+        error_log("File extensions: $picFileExtension, $soundFileExtension"); //error_log prints out in terminal.
 
         $picFileExtMatch = false;
         foreach ($this->acceptablePicFileExtensions as $extension) {
