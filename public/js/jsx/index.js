@@ -210,7 +210,7 @@ class UploadForm extends Component {
                 <div className="center">
                     <form name="form" method="post" action="/upload_file" encType="multipart/form-data"
                           className="form-group upload_form" id={'upload_form'}>
-                        <label htmlFor={'nameForResource'} className={'whiteText'}>Name for your upload: &nbsp;</label>
+                        <label htmlFor={'nameForResource'} className={'whiteText'}>Name for your Upload: &nbsp;</label>
                         <input type="text" name={'nameForResource'} className={'whiteText'} id={'nameForResource'} placeholder={'enter a name'} required={true}/>
                         <br/>
                         <br/>
@@ -220,6 +220,8 @@ class UploadForm extends Component {
 
                         <label htmlFor={'soundFileSelect'} className={'whiteText'}>Select Sound File (.mp3, .wav, .aac)</label> <br/>
                         <input type="file" name="soundFileSelect" className={'whiteText'} id={'soundFileSelect'} required={true}/><br/><br/>
+
+                        <span className={'whiteText'}>Music or Sound:</span> <br/>
 
                         <input type="radio" value={'Music'} name={'soundType'} id={'musicSound'} required={true}/>
                         <label htmlFor={'musicSound'} className={'whiteText'}>Music</label>
