@@ -221,13 +221,16 @@ class UploadForm extends Component {
                         <label htmlFor={'soundFileSelect'} className={'whiteText'}>Select Sound File (.mp3, .wav, .aac)</label> <br/>
                         <input type="file" name="soundFileSelect" className={'whiteText'} id={'soundFileSelect'} required={true}/><br/><br/>
 
-                        <span className={'whiteText'}>Music or Sound:</span> <br/>
-
-                        <input type="radio" value={'Music'} name={'soundType'} id={'musicSound'} required={true}/>
-                        <label htmlFor={'musicSound'} className={'whiteText'}>Music</label>
-                        <br/>
-                        <input type="radio" value={'Sound'} className={'whiteText'} name={'soundType'} id={'soundSound'} required={true}/>
-                        <label htmlFor={'soundSound'} className={'whiteText'}>Sound</label>
+                        {/*<input type="radio" value={'Music'} name={'soundType'} id={'musicSound'} required={true}/>*/}
+                        {/*<label htmlFor={'musicSound'} className={'whiteText'}>Music</label>*/}
+                        {/*<br/>*/}
+                        {/*<input type="radio" value={'Sound'} className={'whiteText'} name={'soundType'} id={'soundSound'} required={true}/>*/}
+                        {/*<label htmlFor={'soundSound'} className={'whiteText'}>Sound</label>*/}
+                        <label htmlFor="soundType" className={'whiteText'}>Sound or Music: &nbsp;</label>
+                        <select name="soundType" id="soundType">
+                            <option value="0">Sound</option>
+                            <option value="1">Music</option>
+                        </select>
                         <br/>
                         <br/>
                         <input type="submit" name="submit" value="Upload" className="btn btn-primary"/>
@@ -235,6 +238,10 @@ class UploadForm extends Component {
                 </div>
             </Fragment>
         );
+    }
+
+    getCategories() {
+
     }
 }
 
