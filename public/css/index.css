@@ -4,6 +4,11 @@
   max-width: 100%;
 }
 
+body {
+  background: #3f0057;
+  background: linear-gradient(0deg, #3f0057 0%, #37004a 13%, #1b0025 100%);
+}
+
 .navbar {
   z-index: 9999;
   margin: 0.5rem 0px 0px;

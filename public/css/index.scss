@@ -4,6 +4,11 @@
   max-width: 100%;
 }
 
+body {
+    background: rgb(63,0,87);
+    background: linear-gradient(0deg, rgba(63,0,87,1) 0%, rgba(55,0,74,1) 13%, rgba(27,0,37,1) 100%);
+}
+
 //Add margin and padding to Bootstrap's .container will cause problems.
 .container {
   //margin: 0px;
