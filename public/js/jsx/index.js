@@ -204,6 +204,9 @@ class UploadForm extends Component {
                         case 'SUCCESS':
                             alert('Upload success!');
                             break;
+                        case 'NoSoundNoMusicSelect':
+                            alert('No Sound nor Music Type Selected!');
+                            break;
                     }
                 },error:function(data){
                     console.log(data);
@@ -235,6 +238,7 @@ class UploadForm extends Component {
                         {/*<label htmlFor={'soundSound'} className={'whiteText'}>Sound</label>*/}
                         <label htmlFor="soundType" className={'whiteText'}>Sound or Music: &nbsp;</label>
                         <select name="soundType" id="soundType" onChange={this.getCategories}>
+                            <option value='-1'></option>
                             <option value={SOUND_TYPE_ID}>Sound</option>
                             <option value={MUSIC_TYPE_ID}>Music</option>
                         </select>

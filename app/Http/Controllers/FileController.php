@@ -69,6 +69,8 @@ class FileController extends Controller
                 $thisSoundFilePath = $this->musicPath;
                 $thisSoundType = '1';
                 break;
+            default:
+                return 'NoSoundNoMusicSelect';
         }
 
         /*
