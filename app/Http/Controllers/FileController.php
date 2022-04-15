@@ -81,4 +81,9 @@ class FileController extends Controller
 
         return 'SUCCESS';
     }
+
+    public function getCategories(Request $request) {
+        $soundType = $request->input('sound_type');
+        error_log("Sound type: $soundType");
+    }
 }

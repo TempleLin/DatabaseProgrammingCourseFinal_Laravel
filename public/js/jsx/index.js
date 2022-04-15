@@ -7,6 +7,9 @@ const {
 const ALL_SOUNDS_GALLERY = Symbol('all_sounds_gallery');
 const UPLOAD_FORM = Symbol('upload_form');
 
+const SOUND_TYPE_ID = '0'
+const MUSIC_TYPE_ID = '1'
+
 class TopNavBar extends Component {
     constructor(props) {
         super(props);
@@ -165,6 +168,12 @@ class GalleryContainer extends Component{
 }
 
 class UploadForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            categories: '-1'
+        };
+    }
     componentDidMount() {
         CompsAnims.slowlySlideInUploadForm();
 
@@ -180,10 +189,10 @@ class UploadForm extends Component {
                 },
                 url:'/upload_file',
                 method: "POST",
-                dataType: 'text',
+                dataType: 'text', //Response to expect.
                 data: new FormData(this),
-                processData: false,
-                contentType: false,
+                processData: false, //Stops jQuery processing any of the data.
+                contentType: false, //Forces jQuery not to add a Content-Type header.
                 success:function (data) {
                     switch (data) {
                         case 'FILE NULL':
@@ -227,11 +236,15 @@ class UploadForm extends Component {
                         {/*<input type="radio" value={'Sound'} className={'whiteText'} name={'soundType'} id={'soundSound'} required={true}/>*/}
                         {/*<label htmlFor={'soundSound'} className={'whiteText'}>Sound</label>*/}
                         <label htmlFor="soundType" className={'whiteText'}>Sound or Music: &nbsp;</label>
-                        <select name="soundType" id="soundType">
-                            <option value="0">Sound</option>
-                            <option value="1">Music</option>
+                        <select name="soundType" id="soundType" onChange={this.getCategories}>
+                            <option value="-1"/>
+                            <option value={SOUND_TYPE_ID}>Sound</option>
+                            <option value={MUSIC_TYPE_ID}>Music</option>
                         </select>
                         <br/>
+                        <select name="categories" id="categories">
+                            {this.setCategories()}
+                        </select>
                         <br/>
                         <input type="submit" name="submit" value="Upload" className="btn btn-primary"/>
                     </form>
@@ -240,8 +253,33 @@ class UploadForm extends Component {
         );
     }
 
-    getCategories() {
+    setCategories = () => {
 
+    }
+
+    getCategories = (event) => {
+        let value = event.target.value;
+        console.log('Value: ' + value);
+        console.log('Click Sound or Music.');
+        if (value !== '-1') {
+            this.setState({categories: value});
+        }
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') //CSRF Token related to Laravel.
+            },
+            url:'/get_categories',
+            method: "GET",
+            dataType: 'json',
+            data: {'sound_type': value},
+            // processData: false,
+            // contentType: false,
+            success:function (data) {
+                console.log(data);
+            },error:function(data){
+                console.log(data);
+            }
+        });
     }
 }
 

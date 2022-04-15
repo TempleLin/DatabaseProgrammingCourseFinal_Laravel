@@ -20,3 +20,5 @@ use Illuminate\Http\Request;
 Route::get('/', [PageController::class, 'homePage']);
 
 Route::post('/upload_file', [FileController::class, 'uploadFile']);
+
+Route::get('/get_categories', [FileController::class, 'getCategories']);
