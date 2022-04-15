@@ -211,7 +211,7 @@ class UploadForm extends Component {
                     <form name="form" method="post" action="/upload_file" encType="multipart/form-data"
                           className="form-group upload_form" id={'upload_form'}>
                         <label htmlFor={'nameForUpload'} className={'whiteText'}>Name for your Upload: &nbsp;</label>
-                        <input type="text" name={'nameForUpload'} className={'whiteText'} id={'nameForUpload'} placeholder={'enter a name'} required={true}/>
+                        <input type="text" name={'nameForUpload'} id={'nameForUpload'} placeholder={'enter a name'} required={true}/>
                         <br/>
                         <br/>
 
