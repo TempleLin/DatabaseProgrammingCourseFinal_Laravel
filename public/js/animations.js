@@ -33,11 +33,11 @@ $("#tsparticles")
     .particles()
     .init(
         {
-            background: {
-                color: {
-                    value: "#000000",
-                },
-            },
+            // background: {
+            //     color: {
+            //         value: "#000000",
+            //     },
+            // },
             fpsLimit: 120,
             interactivity: {
                 events: {
