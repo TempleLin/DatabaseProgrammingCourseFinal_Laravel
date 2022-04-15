@@ -237,7 +237,6 @@ class UploadForm extends Component {
                         {/*<label htmlFor={'soundSound'} className={'whiteText'}>Sound</label>*/}
                         <label htmlFor="soundType" className={'whiteText'}>Sound or Music: &nbsp;</label>
                         <select name="soundType" id="soundType" onChange={this.getCategories}>
-                            <option value="-1"/>
                             <option value={SOUND_TYPE_ID}>Sound</option>
                             <option value={MUSIC_TYPE_ID}>Music</option>
                         </select>
@@ -261,9 +260,7 @@ class UploadForm extends Component {
         let value = event.target.value;
         console.log('Value: ' + value);
         console.log('Click Sound or Music.');
-        if (value !== '-1') {
-            this.setState({categories: value});
-        }
+        this.setState({categories: value});
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') //CSRF Token related to Laravel.
