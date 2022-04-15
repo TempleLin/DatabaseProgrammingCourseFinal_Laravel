@@ -3,11 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FileController extends Controller
 {
     private array $acceptablePicFileExtensions = array('jpg', 'png', 'svg');
     private array $acceptableSoundFileExtensions = array('aac', 'wav', 'mp3');
+
+    private string $musicPath;
+    private string $soundPath;
+    private string $thumbnailPath;
+
+
+    //A simple constructor function which is called when we create an object of that Class.
+    public function __construct() {
+        $this->musicPath = public_path('/upload/sounds/music');
+        $this->soundPath = public_path('/upload/sounds/sound');
+        $this->thumbnailPath = public_path('/upload/thumbnails');
+    }
 
     public function uploadFile(Request $request) {
         $picFile = $request->file('picFileSelect'); //'picFileSelect' is 'name' attribute of the form's file input.
@@ -40,11 +53,31 @@ class FileController extends Controller
         $picFileName = $time . '_' . $picFile->getClientOriginalName();
         $soundFileName = $time . '_' . $soundFile->getClientOriginalName();
 
-        $picFile->move(public_path('/upload/thumbnails'), $picFileName);
+        $picFile->move($this->thumbnailPath, $picFileName);
 
         $input = $request->all();
-        $input['soundType'] === 'Music'? $soundFile->move(public_path('/upload/sounds/music'), $soundFileName)
-            : $soundFile->move(public_path('/upload/sounds/sound'), $soundFileName);
+//        $input['soundType'] === 'Music'? $soundFile->move($this->musicPath, $soundFileName)
+//            : $soundFile->move($this->soundPath, $soundFileName);
+        if ($input['soundType'] === 'Music') {
+            $soundFile->move($this->musicPath, $soundFileName);
+            $thisSoundFilePath = $this->musicPath;
+            $thisSoundType = '1';
+        } else {
+            $soundFile->move($this->soundPath, $soundFileName);
+            $thisSoundFilePath = $this->soundPath;
+            $thisSoundType = '0';
+        }
+
+        /*
+         * TODO: Categories column should be from foreign table "categories". Need to implement dropdown in form to select the category, which will be queried from database table.
+         */
+//        DB::insert('INSERT INTO uploads (name, thumbnail_file_loc, sound_file_loc, sound_type, category)
+//                    VALUES(?, ?, ?, ?, ?)', [$uploadName, $this->thumbnailPath + $picFileName, $thisSoundFilePath + $soundFileName, $thisSoundType
+//            ]);
+        $data = [
+            ['name' => $uploadName, 'thumbnail_file_loc' => $this->thumbnailPath . $picFileName, 'sound_file_loc' => $thisSoundFilePath . $soundFileName,
+                $thisSoundType, ]
+        ];
 
         return 'SUCCESS';
     }
