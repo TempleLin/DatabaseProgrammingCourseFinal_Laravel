@@ -89,6 +89,6 @@ class FileController extends Controller
         $soundType = $request->input('sound_type');
         $result = DB::select("SELECT * FROM categories WHERE sound_type=$soundType");
         error_log("result:");
-        error_log(json_encode($result));
+        return $result;
     }
 }

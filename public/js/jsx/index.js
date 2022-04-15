@@ -214,8 +214,6 @@ class UploadForm extends Component {
     render() {
         return (
             <Fragment>
-                <div id="tsparticles"></div>
-
                 <div className="center">
                     <form name="form" method="post" action="/upload_file" encType="multipart/form-data"
                           className="form-group upload_form" id={'upload_form'}>
