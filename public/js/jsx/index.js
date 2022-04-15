@@ -171,7 +171,7 @@ class UploadForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            categories: '-1'
+            categoriesType: '-1'
         };
     }
     componentDidMount() {
@@ -180,8 +180,6 @@ class UploadForm extends Component {
         //Prevent default form submits, use ajax to send json request.
         $('#upload_form').on('submit', function(e){
             e.preventDefault();
-
-            let $this = $(this); //alias form reference
 
             $.ajax({
                 headers: {
@@ -201,11 +199,11 @@ class UploadForm extends Component {
                         case 'FILE UNMATCHED':
                             alert('Filetype unmatched!');
                             break;
-                        case 'SUCCESS':
-                            alert('Upload success!');
-                            break;
                         case 'NoSoundNoMusicSelect':
                             alert('No Sound nor Music Type Selected!');
+                            break;
+                        case 'SUCCESS':
+                            alert('Upload success!');
                             break;
                     }
                 },error:function(data){
@@ -231,11 +229,6 @@ class UploadForm extends Component {
                         <label htmlFor={'soundFileSelect'} className={'whiteText'}>Select Sound File (.mp3, .wav, .aac)</label> <br/>
                         <input type="file" name="soundFileSelect" className={'whiteText'} id={'soundFileSelect'} required={true}/><br/><br/>
 
-                        {/*<input type="radio" value={'Music'} name={'soundType'} id={'musicSound'} required={true}/>*/}
-                        {/*<label htmlFor={'musicSound'} className={'whiteText'}>Music</label>*/}
-                        {/*<br/>*/}
-                        {/*<input type="radio" value={'Sound'} className={'whiteText'} name={'soundType'} id={'soundSound'} required={true}/>*/}
-                        {/*<label htmlFor={'soundSound'} className={'whiteText'}>Sound</label>*/}
                         <label htmlFor="soundType" className={'whiteText'}>Sound or Music: &nbsp;</label>
                         <select name="soundType" id="soundType" onChange={this.getCategories}>
                             <option value='-1'></option>
@@ -243,6 +236,7 @@ class UploadForm extends Component {
                             <option value={MUSIC_TYPE_ID}>Music</option>
                         </select>
                         <br/>
+                        <label htmlFor="categories" className={'whiteText'}>Category:</label>
                         <select name="categories" id="categories">
                             {this.setCategories()}
                         </select>
@@ -255,14 +249,20 @@ class UploadForm extends Component {
     }
 
     setCategories = () => {
-
+        if (this.state.categories) {
+            return Object.keys(this.state.categories).map((e, i) => {
+                const categoryJSON = this.state.categories[e];
+                // Each item in React list should have 'key' prop.
+                return <option key={i} value={categoryJSON.id}>{categoryJSON.category}</option>;
+            });
+        }
     }
 
     getCategories = (event) => {
         let value = event.target.value;
         console.log('Value: ' + value);
         console.log('Click Sound or Music.');
-        this.setState({categories: value});
+        this.setState({categoriesType: value});
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') //CSRF Token related to Laravel.
@@ -273,9 +273,10 @@ class UploadForm extends Component {
             data: {'sound_type': value},
             // processData: false,
             // contentType: false,
-            success:function (data) {
-                console.log(data);
-            },error:function(data){
+            success: (data) => {
+                this.setState({'categories': data})
+                // console.log(this.state.categories);
+            },error: (data) => {
                 console.log(data);
             }
         });

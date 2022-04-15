@@ -81,7 +81,7 @@ class FileController extends Controller
 //            ]);
         $data = [
             ['name' => $uploadName, 'thumbnail_file_loc' => $this->thumbnailPath . $picFileName, 'sound_file_loc' => $thisSoundFilePath . $soundFileName,
-                $thisSoundType, ]
+                'sound_type' => $thisSoundType, /*'category' => */]
         ];
 
         return 'SUCCESS';
