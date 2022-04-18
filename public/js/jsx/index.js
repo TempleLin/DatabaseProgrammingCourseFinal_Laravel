@@ -7,6 +7,9 @@ const {
 const ALL_SOUNDS_GALLERY = Symbol('all_sounds_gallery');
 const UPLOAD_FORM = Symbol('upload_form');
 
+const SOUND_TYPE_ID = '0'
+const MUSIC_TYPE_ID = '1'
+
 class TopNavBar extends Component {
     constructor(props) {
         super(props);
@@ -165,6 +168,12 @@ class GalleryContainer extends Component{
 }
 
 class UploadForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            categoriesType: '-1'
+        };
+    }
     componentDidMount() {
         CompsAnims.slowlySlideInUploadForm();
 
@@ -172,18 +181,16 @@ class UploadForm extends Component {
         $('#upload_form').on('submit', function(e){
             e.preventDefault();
 
-            let $this = $(this); //alias form reference
-
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') //CSRF Token related to Laravel.
                 },
                 url:'/upload_file',
                 method: "POST",
-                dataType: 'text',
+                dataType: 'text', //Response to expect.
                 data: new FormData(this),
-                processData: false,
-                contentType: false,
+                processData: false, //Stops jQuery processing any of the data.
+                contentType: false, //Forces jQuery not to add a Content-Type header.
                 success:function (data) {
                     switch (data) {
                         case 'FILE NULL':
@@ -191,6 +198,9 @@ class UploadForm extends Component {
                             break;
                         case 'FILE UNMATCHED':
                             alert('Filetype unmatched!');
+                            break;
+                        case 'NoSoundNoMusicSelect':
+                            alert('No Sound nor Music Type Selected!');
                             break;
                         case 'SUCCESS':
                             alert('Upload success!');
@@ -205,8 +215,6 @@ class UploadForm extends Component {
     render() {
         return (
             <Fragment>
-                <div id="tsparticles"></div>
-
                 <div className="center">
                     <form name="form" method="post" action="/upload_file" encType="multipart/form-data"
                           className="form-group upload_form" id={'upload_form'}>
@@ -221,17 +229,17 @@ class UploadForm extends Component {
                         <label htmlFor={'soundFileSelect'} className={'whiteText'}>Select Sound File (.mp3, .wav, .aac)</label> <br/>
                         <input type="file" name="soundFileSelect" className={'whiteText'} id={'soundFileSelect'} required={true}/><br/><br/>
 
-                        {/*<input type="radio" value={'Music'} name={'soundType'} id={'musicSound'} required={true}/>*/}
-                        {/*<label htmlFor={'musicSound'} className={'whiteText'}>Music</label>*/}
-                        {/*<br/>*/}
-                        {/*<input type="radio" value={'Sound'} className={'whiteText'} name={'soundType'} id={'soundSound'} required={true}/>*/}
-                        {/*<label htmlFor={'soundSound'} className={'whiteText'}>Sound</label>*/}
                         <label htmlFor="soundType" className={'whiteText'}>Sound or Music: &nbsp;</label>
-                        <select name="soundType" id="soundType">
-                            <option value="0">Sound</option>
-                            <option value="1">Music</option>
+                        <select name="soundType" id="soundType" onChange={this.getCategories}>
+                            <option value='-1'></option>
+                            <option value={SOUND_TYPE_ID}>Sound</option>
+                            <option value={MUSIC_TYPE_ID}>Music</option>
                         </select>
                         <br/>
+                        <label htmlFor="categories" className={'whiteText'}>Category:</label>
+                        <select name="categories" id="categories">
+                            {this.setCategories()}
+                        </select>
                         <br/>
                         <input type="submit" name="submit" value="Upload" className="btn btn-primary"/>
                     </form>
@@ -240,8 +248,38 @@ class UploadForm extends Component {
         );
     }
 
-    getCategories() {
+    setCategories = () => {
+        if (this.state.categories) {
+            return Object.keys(this.state.categories).map((e, i) => {
+                const categoryJSON = this.state.categories[e];
+                // Each item in React list should have 'key' prop.
+                return <option key={i} value={categoryJSON.id}>{categoryJSON.category}</option>;
+            });
+        }
+    }
 
+    getCategories = (event) => {
+        let value = event.target.value;
+        console.log('Value: ' + value);
+        console.log('Click Sound or Music.');
+        this.setState({categoriesType: value});
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') //CSRF Token related to Laravel.
+            },
+            url:'/get_categories',
+            method: "GET",
+            dataType: 'json',
+            data: {'sound_type': value},
+            // processData: false,
+            // contentType: false,
+            success: (data) => {
+                this.setState({'categories': data})
+                // console.log(this.state.categories);
+            },error: (data) => {
+                console.log(data);
+            }
+        });
     }
 }
 

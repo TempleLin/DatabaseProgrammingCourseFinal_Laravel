@@ -9,6 +9,11 @@ body {
   background: linear-gradient(0deg, #1b001d 0%, #18001b 7%, black 100%);
 }
 
+body {
+  background: #1b001d;
+  background: linear-gradient(0deg, #1b001d 0%, #18001b 7%, black 100%);
+}
+
 .navbar {
   z-index: 9999;
   margin: 0.5rem 0px 0px;

@@ -9,8 +9,12 @@
         src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"></script>
-<!-- first include tsParticles -->
-<script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
+
+<!-- first include tsParticles engine -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-engine"></script>
+
+<!-- then include any tsParticles plugin needed -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles/tsparticles.bundle.min.js"></script>
 
 <!-- then include jquery wrapper -->
 <script src="https://cdn.jsdelivr.net/npm/jquery-particles"></script>

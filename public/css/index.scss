@@ -1,7 +1,12 @@
 *, body {
-  padding: 0px;
-  margin: 0px;
-  max-width: 100%;
+    padding: 0px;
+    margin: 0px;
+    max-width: 100%;
+}
+
+body {
+    background: #1b001d;
+    background: linear-gradient(0deg, #1b001d 0%, #18001b 7%, black 100%);
 }
 
 body {
@@ -11,35 +16,38 @@ body {
 
 //Add margin and padding to Bootstrap's .container will cause problems.
 .container {
-  //margin: 0px;
-  //padding: 0px;
+    //margin: 0px;
+    //padding: 0px;
 }
+
 .navbar {
-  //Make in front of everything.
-  z-index: 9999;
-  margin: 0.5rem 0px 0px;
-  padding: 0px;
+    //Make in front of everything.
+    z-index: 9999;
+    margin: 0.5rem 0px 0px;
+    padding: 0px;
 }
 
 //Give left and right space to the navbar.
 .form-inline {
-  margin-left: 3%;
+    margin-left: 3%;
 }
+
 .d-flex {
-  margin-right: 3%;
+    margin-right: 3%;
 }
 
 /**
 For placing element in center of page.
  */
 .center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
+
 /**
 ---------------------------------------------
  */
@@ -50,21 +58,22 @@ Slight padding offsets to the navbar buttons on top left corner.
 .top_nav_left_padding {
     padding-left: 0.2rem;
 }
+
 .top_nav_top_padding {
     padding-top: 0.2rem;
 }
 
 #tsparticles {
-  z-index: 0;
+    z-index: 0;
 }
 
 .whiteText {
-  color: white;
+    color: white;
 }
 
 .copyright {
-  font-size: 0.8rem;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
-  text-align: right;
+    font-size: 0.8rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    text-align: right;
 }

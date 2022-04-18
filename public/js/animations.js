@@ -35,7 +35,7 @@ $("#tsparticles")
         {
             // background: {
             //     color: {
-            //         value: "rgb(0,0,0)",
+            //         value: "#000000",
             //     },
             // },
             fpsLimit: 120,

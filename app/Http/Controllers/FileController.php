@@ -58,14 +58,19 @@ class FileController extends Controller
         $input = $request->all();
 //        $input['soundType'] === 'Music'? $soundFile->move($this->musicPath, $soundFileName)
 //            : $soundFile->move($this->soundPath, $soundFileName);
-        if ($input['soundType'] === 'Music') {
-            $soundFile->move($this->musicPath, $soundFileName);
-            $thisSoundFilePath = $this->musicPath;
-            $thisSoundType = '1';
-        } else {
-            $soundFile->move($this->soundPath, $soundFileName);
-            $thisSoundFilePath = $this->soundPath;
-            $thisSoundType = '0';
+        switch ($input['soundType']) {
+            case '0':
+                $soundFile->move($this->soundPath, $soundFileName);
+                $thisSoundFilePath = $this->soundPath;
+                $thisSoundType = '0';
+                break;
+            case '1':
+                $soundFile->move($this->musicPath, $soundFileName);
+                $thisSoundFilePath = $this->musicPath;
+                $thisSoundType = '1';
+                break;
+            default:
+                return 'NoSoundNoMusicSelect';
         }
 
         /*
@@ -76,9 +81,16 @@ class FileController extends Controller
 //            ]);
         $data = [
             ['name' => $uploadName, 'thumbnail_file_loc' => $this->thumbnailPath . $picFileName, 'sound_file_loc' => $thisSoundFilePath . $soundFileName,
-                $thisSoundType, ]
+                'sound_type' => $thisSoundType, /*'category' => */]
         ];
 
         return 'SUCCESS';
+    }
+
+    public function getCategories(Request $request) {
+        $soundType = $request->input('sound_type');
+        $result = DB::select("SELECT * FROM categories WHERE sound_type=$soundType");
+        error_log("result:");
+        return $result;
     }
 }
