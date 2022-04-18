@@ -74,15 +74,14 @@ class FileController extends Controller
         }
 
         /*
-         * TODO: Categories column should be from foreign table "categories". Need to implement dropdown in form to select the category, which will be queried from database table.
+         * Note: Categories column should be from foreign table "categories".
          */
-//        DB::insert('INSERT INTO uploads (name, thumbnail_file_loc, sound_file_loc, sound_type, category)
-//                    VALUES(?, ?, ?, ?, ?)', [$uploadName, $this->thumbnailPath + $picFileName, $thisSoundFilePath + $soundFileName, $thisSoundType
-//            ]);
         $data = [
             ['name' => $uploadName, 'thumbnail_file_loc' => $this->thumbnailPath . $picFileName, 'sound_file_loc' => $thisSoundFilePath . $soundFileName,
-                'sound_type' => $thisSoundType, /*'category' => */]
+                'sound_type' => $thisSoundType, 'category' => $input['categories']]
         ];
+        DB::table('uploads')->insert($data);
+        error_log('Categories value: ' . $input['categories']);
 
         return 'SUCCESS';
     }
