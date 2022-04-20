@@ -17,9 +17,9 @@ class FileController extends Controller
 
     //A simple constructor function which is called when we create an object of that Class.
     public function __construct() {
-        $this->musicPath = public_path('/upload/sounds/music');
-        $this->soundPath = public_path('/upload/sounds/sound');
-        $this->thumbnailPath = public_path('/upload/thumbnails');
+        $this->musicPath = public_path('upload\sounds\music\\');
+        $this->soundPath = public_path('upload\sounds\sound\\');
+        $this->thumbnailPath = public_path('upload\thumbnails\\');
     }
 
     public function uploadFile(Request $request) {

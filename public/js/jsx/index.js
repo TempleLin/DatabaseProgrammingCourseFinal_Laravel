@@ -61,7 +61,20 @@ class GalleryContainer extends Component{
             // processData: false, //Stops jQuery processing any of the data.
             // contentType: false, //Forces jQuery not to add a Content-Type header.
             success:function (data) {
-                console.log(data);
+                let allImgsStr = '';
+                data.forEach((element) => {
+                    allImgsStr +=
+                        `
+                        <div class="responsive whiteText">
+                            <a target="_blank">
+                                <img src="${element.thumbnail_file_loc}" alt="" width="600" height="400"/>
+                                <div class="desc">${element.name}</div>
+                            </a>
+                        </div>
+                        `;
+                });
+                console.log(allImgsStr);
+                $('#mainContents').append(allImgsStr);
             },error:function(data){
                 console.log(data);
             }
