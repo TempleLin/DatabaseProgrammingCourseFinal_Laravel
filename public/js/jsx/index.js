@@ -50,6 +50,22 @@ class TopNavBar extends Component {
 class GalleryContainer extends Component{
     componentDidMount() {
         CompsAnims.slowlySlideInRoot();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') //CSRF Token related to Laravel.
+            },
+            url:'/get_all_uploads',
+            method: "GET",
+            dataType: 'json', //Response to expect.
+            // data: new FormData(this),
+            // processData: false, //Stops jQuery processing any of the data.
+            // contentType: false, //Forces jQuery not to add a Content-Type header.
+            success:function (data) {
+                console.log(data);
+            },error:function(data){
+                console.log(data);
+            }
+        });
     }
     render() {
         return(
@@ -334,7 +350,7 @@ class SinglePage extends Component {
             <Fragment>
                 <TopNavBar handlerUseContent={this.handlerUseContent}/>
                 <SideNav/>
-                <div>
+                <div id={'mainContents'}>
                     {selectWhichContentToUse()}
                     <Footer/>
                 </div>

@@ -92,4 +92,9 @@ class FileController extends Controller
         error_log("result:");
         return $result;
     }
+
+    public function getAllUploads() {
+        $result = DB::select("SELECT * FROM uploads");
+        return $result;
+    }
 }
