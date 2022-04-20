@@ -95,8 +95,16 @@ class FileController extends Controller
             ['name' => $uploadName, 'thumbnail_file_loc' => $this->thumbnailPathURL . $picFileName, 'sound_file_loc' => $thisSoundFilePath . $soundFileName,
                 'sound_type' => $thisSoundType, 'category' => $input['categories']]
         ];
-        DB::table('uploads')->insert($data);
-        error_log('Categories value: ' . $input['categories']);
+        try {
+            DB::table('uploads')->insert($data);
+        } catch (\Exception $e){
+            if ($e->errorInfo) {
+                if ($e->errorInfo['1'] == 1062) { //Duplicate primary key insertion exception.
+                    return 'DUPLICATE_PRIMARY_KEY';
+                }
+            }
+        }
+//        error_log('Categories value: ' . $input['categories']);
 
         return 'SUCCESS';
     }
