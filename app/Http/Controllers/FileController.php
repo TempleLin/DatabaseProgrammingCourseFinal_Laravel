@@ -14,12 +14,22 @@ class FileController extends Controller
     private string $soundPath;
     private string $thumbnailPath;
 
+    private string $musicPathURL;
+    private string $soundPathURL;
+    private string $thumbnailPathURL;
+
 
     //A simple constructor function which is called when we create an object of that Class.
     public function __construct() {
         $this->musicPath = public_path('upload\sounds\music\\');
         $this->soundPath = public_path('upload\sounds\sound\\');
         $this->thumbnailPath = public_path('upload\thumbnails\\');
+
+        //url() returns path to the public directory but in URL(eg. localhost://public) instead of local storage path. (eg. D://public)
+        //Specifying image in local storage path is not allowed in Chrome by default.
+        $this->musicPathURL = url('upload/sounds/music') . '/';
+        $this->soundPathURL = url('upload/sounds/sound') . '/';
+        $this->thumbnailPathURL = url('upload/thumbnails') . '/';
     }
 
     public function uploadFile(Request $request) {
@@ -61,12 +71,12 @@ class FileController extends Controller
         switch ($input['soundType']) {
             case '0':
                 $soundFile->move($this->soundPath, $soundFileName);
-                $thisSoundFilePath = $this->soundPath;
+                $thisSoundFilePath = $this->soundPathURL;
                 $thisSoundType = '0';
                 break;
             case '1':
                 $soundFile->move($this->musicPath, $soundFileName);
-                $thisSoundFilePath = $this->musicPath;
+                $thisSoundFilePath = $this->musicPathURL;
                 $thisSoundType = '1';
                 break;
             default:
@@ -77,7 +87,7 @@ class FileController extends Controller
          * Note: Categories column should be from foreign table "categories".
          */
         $data = [
-            ['name' => $uploadName, 'thumbnail_file_loc' => $this->thumbnailPath . $picFileName, 'sound_file_loc' => $thisSoundFilePath . $soundFileName,
+            ['name' => $uploadName, 'thumbnail_file_loc' => $this->thumbnailPathURL . $picFileName, 'sound_file_loc' => $thisSoundFilePath . $soundFileName,
                 'sound_type' => $thisSoundType, 'category' => $input['categories']]
         ];
         DB::table('uploads')->insert($data);

@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('uploads', function (Blueprint $table) {
-//            $table->id();
 //            $table->timestamps();
             $table->string('name', 50)->primary(); //Name as primary key.
             $table->text('thumbnail_file_loc');

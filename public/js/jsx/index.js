@@ -48,6 +48,12 @@ class TopNavBar extends Component {
 }
 
 class GalleryContainer extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            allImgs: ''
+        };
+    }
     componentDidMount() {
         CompsAnims.slowlySlideInRoot();
         $.ajax({
@@ -60,21 +66,23 @@ class GalleryContainer extends Component{
             // data: new FormData(this),
             // processData: false, //Stops jQuery processing any of the data.
             // contentType: false, //Forces jQuery not to add a Content-Type header.
-            success:function (data) {
-                let allImgsStr = '';
+            success: (data) => {
+                let allImgsJSXArray = []; //JSX elements pushed to array can be automatically recognized and converted by React when render.
                 data.forEach((element) => {
-                    allImgsStr +=
-                        `
-                        <div class="responsive whiteText">
-                            <a target="_blank">
-                                <img src="${element.thumbnail_file_loc}" alt="" width="600" height="400"/>
-                                <div class="desc">${element.name}</div>
-                            </a>
+                    allImgsJSXArray.push(
+                        <div className="responsive whiteText" key={element.name}>
+                            <div className="gallery">
+                                <a target="_blank">
+                                    <img src={element.thumbnail_file_loc} alt="" width="600" height="400"/>
+                                    <div className="desc">{element.name}</div>
+                                </a>
+                            </div>
                         </div>
-                        `;
+                    );
                 });
-                console.log(allImgsStr);
-                $('#mainContents').append(allImgsStr);
+                console.log(allImgsJSXArray);
+                // $('#mainContents').append(allImgsStr);
+                this.setState({allImgs: allImgsJSXArray});
             },error:function(data){
                 console.log(data);
             }
@@ -83,6 +91,7 @@ class GalleryContainer extends Component{
     render() {
         return(
             <Fragment>
+                {this.state.allImgs}
                 {/*<div className={"image_gallery_wrapper"}>*/}
                 {/*    <img src="https://source.unsplash.com/random/600x600?water" alt=""/>*/}
                 {/*    <img src="https://source.unsplash.com/random/600x600?summer" alt=""/>*/}
@@ -95,102 +104,102 @@ class GalleryContainer extends Component{
                 {/*    <img src="https://source.unsplash.com/random/600x600?ice" alt=""/>*/}
                 {/*    <img src="https://source.unsplash.com/random/600x600?spring" alt=""/>*/}
                 {/*</div>*/}
-                <div className="responsive whiteText">
-                    <div className="gallery">
-                        <a target="_blank" href="img_5terre.jpg">
-                            <img src="https://source.unsplash.com/random/600x600?water" alt="Cinque Terre" width="600" height="400"/>
-                        </a>
-                        <div className="desc">Add a description of the image here</div>
-                    </div>
-                </div>
-                <div className="responsive whiteText">
-                    <div className="gallery">
-                        <a target="_blank" href="img_forest.jpg">
-                            <img src="https://source.unsplash.com/random/600x600?summer" alt="Forest" width="600" height="400"/>
-                        </a>
-                        <div className="desc">Add a description of the image here</div>
-                    </div>
-                </div>
-                <div className="responsive whiteText">
-                    <div className="gallery">
-                        <a target="_blank" href="img_forest.jpg">
-                            <img src="https://source.unsplash.com/random/600x600?summer" alt="Forest" width="600" height="400"/>
-                        </a>
-                        <div className="desc">Add a description of the image here</div>
-                    </div>
-                </div>
-                <div className="responsive whiteText">
-                    <div className="gallery">
-                        <a target="_blank" href="img_forest.jpg">
-                            <img src="https://source.unsplash.com/random/600x600?summer" alt="Forest" width="600" height="400"/>
-                        </a>
-                        <div className="desc">Add a description of the image here</div>
-                    </div>
-                </div>
-                <div className="responsive whiteText">
-                    <div className="gallery">
-                        <a target="_blank" href="img_forest.jpg">
-                            <img src="https://source.unsplash.com/random/600x600?summer" alt="Forest" width="600" height="400"/>
-                        </a>
-                        <div className="desc">Add a description of the image here</div>
-                    </div>
-                </div>
-                <div className="responsive whiteText">
-                    <div className="gallery">
-                        <a target="_blank" href="img_5terre.jpg">
-                            <img src="https://source.unsplash.com/random/600x600?water" alt="Cinque Terre" width="600" height="400"/>
-                        </a>
-                        <div className="desc">Add a description of the image here</div>
-                    </div>
-                </div>
-                <div className="responsive whiteText">
-                    <div className="gallery">
-                        <a target="_blank" href="img_5terre.jpg">
-                            <img src="https://source.unsplash.com/random/600x600?water" alt="Cinque Terre" width="600" height="400"/>
-                        </a>
-                        <div className="desc">Add a description of the image here</div>
-                    </div>
-                </div>
-                <div className="responsive whiteText">
-                    <div className="gallery">
-                        <a target="_blank" href="img_5terre.jpg">
-                            <img src="https://source.unsplash.com/random/600x600?water" alt="Cinque Terre" width="600" height="400"/>
-                        </a>
-                        <div className="desc">Add a description of the image here</div>
-                    </div>
-                </div>
-                <div className="responsive whiteText">
-                    <div className="gallery">
-                        <a target="_blank" href="img_5terre.jpg">
-                            <img src="https://source.unsplash.com/random/600x600?water" alt="Cinque Terre" width="600" height="400"/>
-                        </a>
-                        <div className="desc">Add a description of the image here</div>
-                    </div>
-                </div>
-                <div className="responsive whiteText">
-                    <div className="gallery">
-                        <a target="_blank" href="img_5terre.jpg">
-                            <img src="https://source.unsplash.com/random/600x600?water" alt="Cinque Terre" width="600" height="400"/>
-                        </a>
-                        <div className="desc">Add a description of the image here</div>
-                    </div>
-                </div>
-                <div className="responsive whiteText">
-                    <div className="gallery">
-                        <a target="_blank" href="img_5terre.jpg">
-                            <img src="https://source.unsplash.com/random/600x600?water" alt="Cinque Terre" width="600" height="400"/>
-                        </a>
-                        <div className="desc">Add a description of the image here</div>
-                    </div>
-                </div>
-                <div className="responsive whiteText">
-                    <div className="gallery">
-                        <a target="_blank" href="img_5terre.jpg">
-                            <img src="https://source.unsplash.com/random/600x600?water" alt="Cinque Terre" width="600" height="400"/>
-                        </a>
-                        <div className="desc">Add a description of the image here</div>
-                    </div>
-                </div>
+                {/*<div className="responsive whiteText">*/}
+                {/*    <div className="gallery">*/}
+                {/*        <a target="_blank" href="img_5terre.jpg">*/}
+                {/*            <img src="https://source.unsplash.com/random/600x600?water" alt="Cinque Terre" width="600" height="400"/>*/}
+                {/*        </a>*/}
+                {/*        <div className="desc">Add a description of the image here</div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+                {/*<div className="responsive whiteText">*/}
+                {/*    <div className="gallery">*/}
+                {/*        <a target="_blank" href="img_forest.jpg">*/}
+                {/*            <img src="https://source.unsplash.com/random/600x600?summer" alt="Forest" width="600" height="400"/>*/}
+                {/*        </a>*/}
+                {/*        <div className="desc">Add a description of the image here</div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+                {/*<div className="responsive whiteText">*/}
+                {/*    <div className="gallery">*/}
+                {/*        <a target="_blank" href="img_forest.jpg">*/}
+                {/*            <img src="https://source.unsplash.com/random/600x600?summer" alt="Forest" width="600" height="400"/>*/}
+                {/*        </a>*/}
+                {/*        <div className="desc">Add a description of the image here</div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+                {/*<div className="responsive whiteText">*/}
+                {/*    <div className="gallery">*/}
+                {/*        <a target="_blank" href="img_forest.jpg">*/}
+                {/*            <img src="https://source.unsplash.com/random/600x600?summer" alt="Forest" width="600" height="400"/>*/}
+                {/*        </a>*/}
+                {/*        <div className="desc">Add a description of the image here</div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+                {/*<div className="responsive whiteText">*/}
+                {/*    <div className="gallery">*/}
+                {/*        <a target="_blank" href="img_forest.jpg">*/}
+                {/*            <img src="https://source.unsplash.com/random/600x600?summer" alt="Forest" width="600" height="400"/>*/}
+                {/*        </a>*/}
+                {/*        <div className="desc">Add a description of the image here</div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+                {/*<div className="responsive whiteText">*/}
+                {/*    <div className="gallery">*/}
+                {/*        <a target="_blank" href="img_5terre.jpg">*/}
+                {/*            <img src="https://source.unsplash.com/random/600x600?water" alt="Cinque Terre" width="600" height="400"/>*/}
+                {/*        </a>*/}
+                {/*        <div className="desc">Add a description of the image here</div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+                {/*<div className="responsive whiteText">*/}
+                {/*    <div className="gallery">*/}
+                {/*        <a target="_blank" href="img_5terre.jpg">*/}
+                {/*            <img src="https://source.unsplash.com/random/600x600?water" alt="Cinque Terre" width="600" height="400"/>*/}
+                {/*        </a>*/}
+                {/*        <div className="desc">Add a description of the image here</div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+                {/*<div className="responsive whiteText">*/}
+                {/*    <div className="gallery">*/}
+                {/*        <a target="_blank" href="img_5terre.jpg">*/}
+                {/*            <img src="https://source.unsplash.com/random/600x600?water" alt="Cinque Terre" width="600" height="400"/>*/}
+                {/*        </a>*/}
+                {/*        <div className="desc">Add a description of the image here</div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+                {/*<div className="responsive whiteText">*/}
+                {/*    <div className="gallery">*/}
+                {/*        <a target="_blank" href="img_5terre.jpg">*/}
+                {/*            <img src="https://source.unsplash.com/random/600x600?water" alt="Cinque Terre" width="600" height="400"/>*/}
+                {/*        </a>*/}
+                {/*        <div className="desc">Add a description of the image here</div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+                {/*<div className="responsive whiteText">*/}
+                {/*    <div className="gallery">*/}
+                {/*        <a target="_blank" href="img_5terre.jpg">*/}
+                {/*            <img src="https://source.unsplash.com/random/600x600?water" alt="Cinque Terre" width="600" height="400"/>*/}
+                {/*        </a>*/}
+                {/*        <div className="desc">Add a description of the image here</div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+                {/*<div className="responsive whiteText">*/}
+                {/*    <div className="gallery">*/}
+                {/*        <a target="_blank" href="img_5terre.jpg">*/}
+                {/*            <img src="https://source.unsplash.com/random/600x600?water" alt="Cinque Terre" width="600" height="400"/>*/}
+                {/*        </a>*/}
+                {/*        <div className="desc">Add a description of the image here</div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+                {/*<div className="responsive whiteText">*/}
+                {/*    <div className="gallery">*/}
+                {/*        <a target="_blank" href="img_5terre.jpg">*/}
+                {/*            <img src="https://source.unsplash.com/random/600x600?water" alt="Cinque Terre" width="600" height="400"/>*/}
+                {/*        </a>*/}
+                {/*        <div className="desc">Add a description of the image here</div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </Fragment>
         );
     }
