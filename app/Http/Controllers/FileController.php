@@ -21,6 +21,11 @@ class FileController extends Controller
 
     //A simple constructor function which is called when we create an object of that Class.
     public function __construct() {
+        /**
+         * Note: Files should be saved to public path, but its location to save to database should be using its url (eg. localhost://public).
+         *      So that, when retrieving the assets from database through frontend, image can be placed directly to HTML without chrome's blocking issued.
+         *      (Setting files to HTML using local storage path (eg. D://public) is not allowed by default in Chrome.)
+         */
         $this->musicPath = public_path('upload\sounds\music\\');
         $this->soundPath = public_path('upload\sounds\sound\\');
         $this->thumbnailPath = public_path('upload\thumbnails\\');
