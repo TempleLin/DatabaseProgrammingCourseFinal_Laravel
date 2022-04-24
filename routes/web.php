@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 
 /**
  * Note:
- *  Sometimes route might have cache causing errors, need to type: "php artisan route:clear" in terminal.
+ *  1. Sometimes route might have cache causing errors, need to type: "php artisan route:clear" in terminal.
+ *  2. If website shows "500 server error", it might be bc .env file is not created.
+ *  3. To generate default tables in database for the project, type "php artisan migrate" in terminal.
  *
  * TODO:
  *  1.  Through the use of setState to set parent component's state, can update other components in same hierarchy without changing the page.
