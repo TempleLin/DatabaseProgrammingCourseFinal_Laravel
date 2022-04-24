@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
  *  1. Sometimes route might have cache causing errors, need to type: "php artisan route:clear" in terminal.
  *  2. If website shows "500 server error", it might be bc .env file is not created.
  *  3. To generate default tables in database for the project, type "php artisan migrate" in terminal.
+ *  4. To run this Laravel web app on XAMPP with MySQL integration, need to create virtual host. Otherwise, it'll show 404 when trying get request.
+ *     Follow this tutorial and make sure to do all steps to make it work: https://divpusher.com/blog/how-to-run-laravel-on-windows-with-xampp/
  *
  * TODO:
  *  1.  Through the use of setState to set parent component's state, can update other components in same hierarchy without changing the page.
