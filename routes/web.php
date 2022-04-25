@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -28,3 +29,7 @@ Route::post('/upload_file', [FileController::class, 'uploadFile']);
 Route::get('/get_categories', [FileController::class, 'getCategories']);
 
 Route::get('/get_all_uploads', [FileController::class, 'getAllUploads']);
+
+Route::post('/login', [UserController::class, 'login']);
+
+Route::post('/register', [UserController::class, 'register']);
