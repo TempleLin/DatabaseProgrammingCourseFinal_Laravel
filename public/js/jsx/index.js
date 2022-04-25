@@ -3,9 +3,17 @@ const {
     Fragment
 } = React;
 
+/**
+ * TODO: Change ALL_SOUNDS_GALLERY to MUSIC_GALLERY and SOUND_GALLERY individually. Change Homepage to single landing page.
+ * TODO: Login form.
+ * TODO: Register form.
+ */
+
 //'Symbol' is similar to enum in JS.
 const ALL_SOUNDS_GALLERY = Symbol('all_sounds_gallery');
 const UPLOAD_FORM = Symbol('upload_form');
+const LOGIN_FORM = Symbol('login_form');
+const REGISTER_FORM = Symbol('register_form');
 
 const SOUND_TYPE_ID = '0'
 const MUSIC_TYPE_ID = '1'
@@ -21,16 +29,16 @@ class TopNavBar extends Component {
         return (
             <nav className={"navbar"}>
                 <div className="d-flex">
-                    <button className="btn btn-outline-success text-light round-btn" onClick={() => {this.props.handlerUseContent(ALL_SOUNDS_GALLERY)}}>Home</button>
+                    <button className="btn btn btn-outline-success text-light round-btn" onClick={() => {this.props.handlerUseContent(ALL_SOUNDS_GALLERY)}}>Home</button>
                     {/*<form action="/" method={'GET'} className={'top_nav_left_padding'}>*/}
                     {/*    <input className="btn btn-outline-success text-light round-btn" type="submit" value="Home"/>*/}
                     {/*</form>*/}
-                    <form action="/musics" method={'GET'} className={'top_nav_left_padding top_nav_top_padding'}>
-                        <input className="btn btn-sm btn-outline-secondary text-light round-btn" type="submit" value="Musics" />
-                    </form>
-                    <form action="/sounds" method={'GET'} className={'top_nav_left_padding top_nav_top_padding'}>
-                        <input className="btn btn-sm btn-outline-secondary text-light round-btn" type="submit" value="Sounds" />
-                    </form>
+                    <div action="/musics" className={'top_nav_left_padding top_nav_top_padding'}>
+                        <button className="btn btn-sm btn-outline-success text-light round-btn">Musics</button>
+                    </div>
+                    <div action="/sounds" className={'top_nav_left_padding top_nav_top_padding'}>
+                        <button className="btn btn-sm btn-outline-success text-light round-btn">Sounds</button>
+                    </div>
                 </div>
                 <div className="d-flex">
                     <button className="btn btn-outline-success text-light round-btn" onClick={() => {this.props.handlerUseContent(UPLOAD_FORM)}}>Upload</button>
@@ -38,11 +46,28 @@ class TopNavBar extends Component {
                     {/*    <input className="btn btn-outline-success text-light round-btn" type="submit" value="Upload"*/}
                     {/*           onClick={this.props.handleUseImageContainer}/>*/}
                     {/*</form>*/}
-                    <form action="/login_register" method={'GET'}>
-                        <input className="btn btn-outline-success text-light form-inline round-btn" type="submit" value="Login/Register" />
-                    </form>
+                    <div action="/login_register">
+                        <button className="btn btn-outline-success text-light form-inline round-btn"
+                                onClick={() => {this.props.handlerUseContent(LOGIN_FORM)}}>Login/Register</button>
+                    </div>
                 </div>
             </nav>
+        );
+    }
+}
+
+class SideNav extends Component {
+    componentDidMount() {
+        CompsAnims.slowlySlideInSideNav();
+    }
+    render() {
+        return (
+            <div className={'sidenav'}>
+                <a href={'#'}>About</a>
+                <a href={'#'}>Services</a>
+                <a href={'#'}>Clients</a>
+                <a href={'#'}>Contact</a>
+            </div>
         );
     }
 }
@@ -225,19 +250,14 @@ class UploadForm extends Component {
     }
 }
 
-class SideNav extends Component {
-    componentDidMount() {
-        CompsAnims.slowlySlideInSideNav();
+class LoginForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        };
     }
     render() {
-        return (
-            <div className={'sidenav'}>
-                <a href={'#'}>About</a>
-                <a href={'#'}>Services</a>
-                <a href={'#'}>Clients</a>
-                <a href={'#'}>Contact</a>
-            </div>
-        );
+        return <h1>Test</h1>;
     }
 }
 
@@ -245,12 +265,6 @@ function Footer() {
     return (
         <small className={"whiteText fixed-bottom copyright"}>@2021 Database Programming Course Group Final Project. All rights reserved.</small>
     )
-}
-
-function BlankComponent() {
-    return (
-        <Fragment/>
-    );
 }
 
 class SinglePage extends Component {
@@ -270,6 +284,8 @@ class SinglePage extends Component {
                     return <GalleryContainer/>
                 case UPLOAD_FORM:
                     return <UploadForm/>;
+                case LOGIN_FORM:
+                    return <LoginForm/>;
             }
         };
         return (
@@ -285,5 +301,4 @@ class SinglePage extends Component {
     }
 }
 
-ReactDOM.render(
-    <SinglePage/>, document.querySelector("#root"));
+ReactDOM.render(<SinglePage/>, document.querySelector("#root"));

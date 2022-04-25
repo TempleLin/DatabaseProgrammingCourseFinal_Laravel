@@ -16,8 +16,8 @@ body {
 
 .navbar {
   z-index: 9999;
-  margin: 0.5rem 0px 0px;
-  padding: 0px;
+  margin: 0px;
+  padding: 0.5rem 0px 0px;
 }
 
 .form-inline {
