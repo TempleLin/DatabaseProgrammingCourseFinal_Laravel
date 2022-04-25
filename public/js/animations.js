@@ -17,6 +17,9 @@ class CompsAnims {
     static slowlySlideInUploadForm() {
         $('.upload_form').hide().slideToggle('slow');
     }
+    static slowlySlideInLoginForm() {
+        $('#loginFormDiv').hide().slideToggle('slow');
+    }
 }
 
 /**

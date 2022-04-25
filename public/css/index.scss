@@ -71,6 +71,34 @@ Slight padding offsets to the navbar buttons on top left corner.
     color: white;
 }
 
+$transparentBlackBGColor: rgba(0, 0, 0, 0.6);
+$roundBorderRem: 3rem;
+
+//Login form.
+#loginFormDiv {
+    background-color: $transparentBlackBGColor;
+    border-radius: $roundBorderRem;
+    form {
+        padding: 3rem;
+        label {
+            display: table;
+            margin-right: auto;
+            padding: 1rem 0px 0px 0px;
+        }
+        input {
+            display: table;
+            margin-left: auto;
+        }
+    }
+}
+
+//Upload form.
+#uploadFormDiv {
+    background-color: $transparentBlackBGColor;
+    border-radius: $roundBorderRem;
+    padding: 3rem;
+}
+
 .copyright {
     font-size: 0.8rem;
     margin-right: 1rem;

@@ -181,37 +181,32 @@ class UploadForm extends Component {
     }
     render() {
         return (
-            <Fragment>
-                <div className="center">
-                    <form name="form" method="post" action="/upload_file" encType="multipart/form-data"
-                          className="form-group upload_form" id={'upload_form'}>
-                        <label htmlFor={'nameForUpload'} className={'whiteText'}>Name for your Upload: &nbsp;</label>
-                        <input type="text" name={'nameForUpload'} id={'nameForUpload'} placeholder={'enter a name'} required={true}/>
-                        <br/>
-                        <br/>
-
-                        <label htmlFor={'picFileSelect'} className={'whiteText'}>Select Thumbnail (.jpg, .png., .svg)</label> <br/>
-                        <input type="file" name="picFileSelect" className={'whiteText'} id={'picFileSelect'} required={true}/><br/><br/>
-
-                        <label htmlFor={'soundFileSelect'} className={'whiteText'}>Select Sound File (.mp3, .wav, .aac)</label> <br/>
-                        <input type="file" name="soundFileSelect" className={'whiteText'} id={'soundFileSelect'} required={true}/><br/><br/>
-
-                        <label htmlFor="soundType" className={'whiteText'}>Sound or Music: &nbsp;</label>
-                        <select name="soundType" id="soundType" onChange={this.getCategories}>
-                            <option value='-1'></option>
-                            <option value={SOUND_TYPE_ID}>Sound</option>
-                            <option value={MUSIC_TYPE_ID}>Music</option>
-                        </select>
-                        <br/>
-                        <label htmlFor="categories" className={'whiteText'}>Category:</label>
-                        <select name="categories" id="categories">
-                            {this.setCategories()}
-                        </select>
-                        <br/>
-                        <input type="submit" name="submit" value="Upload" className="btn btn-primary"/>
-                    </form>
-                </div>
-            </Fragment>
+            <div className="center" id={'uploadFormDiv'}>
+                <form name="form" method="post" action="/upload_file" encType="multipart/form-data"
+                      className="form-group upload_form" id={'upload_form'}>
+                    <label htmlFor={'nameForUpload'} className={'whiteText'}>Name for your Upload: &nbsp;</label>
+                    <input type="text" name={'nameForUpload'} id={'nameForUpload'} placeholder={'enter a name'} required={true}/>
+                    <br/>
+                    <br/>
+                    <label htmlFor={'picFileSelect'} className={'whiteText'}>Select Thumbnail (.jpg, .png., .svg)</label> <br/>
+                    <input type="file" name="picFileSelect" className={'whiteText'} id={'picFileSelect'} required={true}/><br/><br/>
+                    <label htmlFor={'soundFileSelect'} className={'whiteText'}>Select Sound File (.mp3, .wav, .aac)</label> <br/>
+                    <input type="file" name="soundFileSelect" className={'whiteText'} id={'soundFileSelect'} required={true}/><br/><br/>
+                    <label htmlFor="soundType" className={'whiteText'}>Sound or Music: &nbsp;</label>
+                    <select name="soundType" id="soundType" onChange={this.getCategories}>
+                        <option value='-1'></option>
+                        <option value={SOUND_TYPE_ID}>Sound</option>
+                        <option value={MUSIC_TYPE_ID}>Music</option>
+                    </select>
+                    <br/>
+                    <label htmlFor="categories" className={'whiteText'}>Category:</label>
+                    <select name="categories" id="categories">
+                        {this.setCategories()}
+                    </select>
+                    <br/>
+                    <input type="submit" name="submit" value="Upload" className="btn btn-primary"/>
+                </form>
+            </div>
         );
     }
 
@@ -256,8 +251,25 @@ class LoginForm extends Component {
         this.state = {
         };
     }
+    componentDidMount() {
+        CompsAnims.slowlySlideInLoginForm();
+    }
     render() {
-        return <h1>Test</h1>;
+        return (
+            <div className="center">
+                <div id={'loginFormDiv'}>
+                    <form action={'/login'} method={'POST'}>
+                        <label htmlFor={'loginUsername'} className={'whiteText'}>Username:</label>
+                        <input type="text" id={'loginUsername'} name={'loginUsername'}/>
+                        <br/>
+                        <label htmlFor={'loginPassword'} className={'whiteText'}>Password:</label>
+                        <input type="password" id={'loginPassword'} name={'loginPassword'}/>
+                        <br/>
+                        <input type="submit" value={'Login'} className={'btn btn-primary'}/>
+                    </form>
+                </div>
+            </div>
+        );
     }
 }
 
