@@ -265,6 +265,7 @@ class LoginForm extends Component {
                         <label htmlFor={'loginPassword'} className={'whiteText'}>Password:</label>
                         <input type="password" id={'loginPassword'} name={'loginPassword'}/>
                         <br/>
+                        <span className={'text-primary register_text'}>Register</span>
                         <input type="submit" value={'Login'} className={'btn btn-primary'}/>
                     </form>
                 </div>
