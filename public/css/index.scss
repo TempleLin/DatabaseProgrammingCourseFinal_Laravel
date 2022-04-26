@@ -75,7 +75,7 @@ $transparentBlackBGColor: rgba(0, 0, 0, 0.6);
 $roundBorderRem: 3rem;
 
 //Login form.
-#loginFormDiv {
+#loginFormDiv, #registerFormDiv {
     background-color: $transparentBlackBGColor;
     border-radius: $roundBorderRem;
     form {

@@ -245,6 +245,37 @@ class UploadForm extends Component {
     }
 }
 
+class RegisterForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        };
+    }
+    componentDidMount() {
+
+    }
+    render() {
+        return (
+            <div className="center">
+                <div id={'registerFormDiv'}>
+                    <form action={'/register'} method={'POST'} id={'registerForm'}>
+                        <label htmlFor={'regUsername'} className={'whiteText'}>Username:</label>
+                        <input type="text" id={'regUsername'} name={'regUsername'}/>
+                        <br/>
+                        <label htmlFor={'regPassword'} className={'whiteText'}>Password:</label>
+                        <input type="password" id={'regPassword'} name={'regPassword'}/>
+                        <br/>
+                        <label htmlFor={'regPasswordAgain'} className={'whiteText'}>Password Again:</label>
+                        <input type="password" id={'regPasswordAgain'} name={'regPasswordAgain'}/>
+                        <br/>
+                        <input type="submit" value={'Register'} className={'btn btn-primary'}/>
+                    </form>
+                </div>
+            </div>
+        );
+    }
+}
+
 class LoginForm extends Component {
     constructor(props) {
         super(props);
@@ -253,12 +284,35 @@ class LoginForm extends Component {
     }
     componentDidMount() {
         CompsAnims.slowlySlideInLoginForm();
+        //Prevent default form submits, use ajax to send json request.
+        $('#loginForm').on('submit', function(e){
+            e.preventDefault();
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') //CSRF Token related to Laravel.
+                },
+                url:'/login',
+                method: "POST",
+                dataType: 'text', //Response to expect.
+                data: new FormData(this),
+                processData: false, //Stops jQuery processing any of the data.
+                contentType: false, //Forces jQuery not to add a Content-Type header.
+                success:function (data) {
+                    console.log('Login result message: ' + data);
+                },error:function(data){
+                    console.log(data);
+                }
+            });
+        });
+        $('#loginForm > .register_text').on('click', function () {
+
+        });
     }
     render() {
         return (
             <div className="center">
                 <div id={'loginFormDiv'}>
-                    <form action={'/login'} method={'POST'}>
+                    <form action={'/login'} method={'POST'} id={'loginForm'}>
                         <label htmlFor={'loginUsername'} className={'whiteText'}>Username:</label>
                         <input type="text" id={'loginUsername'} name={'loginUsername'}/>
                         <br/>
@@ -290,7 +344,7 @@ class SinglePage extends Component {
     //Handle to be called by child component to change state and therefore change render result.
     handlerUseContent = (comp) => { this.setState({useContent: comp}); }
 
-    render() {
+    render = () => {
         const selectWhichContentToUse = () => {
             switch (this.state.useContent) {
                 case ALL_SOUNDS_GALLERY:
@@ -298,7 +352,7 @@ class SinglePage extends Component {
                 case UPLOAD_FORM:
                     return <UploadForm/>;
                 case LOGIN_FORM:
-                    return <LoginForm/>;
+                    return <LoginForm handlerUseContent={this.handlerUseContent}/>;
             }
         };
         return (
