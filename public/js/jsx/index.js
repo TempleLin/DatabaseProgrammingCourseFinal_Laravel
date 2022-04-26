@@ -252,13 +252,35 @@ class RegisterForm extends Component {
         };
     }
     componentDidMount() {
-
+        CompsAnims.slowlySlideInRegisterForm();
+        $('#registerForm').on('submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') //CSRF Token related to Laravel.
+                },
+                url: '/register',
+                method: "POST",
+                dataType: 'text', //Response to expect.
+                data: new FormData(this),
+                processData: false, //Stops jQuery processing any of the data.
+                contentType: false, //Forces jQuery not to add a Content-Type header.
+                success: function (data) {
+                    console.log('Login result message: ' + data);
+                }, error: function (data) {
+                    console.log(data);
+                }
+            });
+        });
     }
     render() {
         return (
             <div className="center">
                 <div id={'registerFormDiv'}>
                     <form action={'/register'} method={'POST'} id={'registerForm'}>
+                        <label htmlFor={'regEmail'} className={'whiteText'}>Email:</label>
+                        <input type="text" id={'regEmail'} name={'regEmail'}/>
+                        <br/>
                         <label htmlFor={'regUsername'} className={'whiteText'}>Username:</label>
                         <input type="text" id={'regUsername'} name={'regUsername'}/>
                         <br/>
@@ -305,7 +327,7 @@ class LoginForm extends Component {
             });
         });
         $('#loginForm > .register_text').on('click', function () {
-
+            this.props.handlerUseContent(REGISTER_FORM);
         });
     }
     render() {
@@ -319,7 +341,7 @@ class LoginForm extends Component {
                         <label htmlFor={'loginPassword'} className={'whiteText'}>Password:</label>
                         <input type="password" id={'loginPassword'} name={'loginPassword'}/>
                         <br/>
-                        <span className={'text-primary register_text'}>Register</span>
+                        <span className={'text-primary register_text'} onClick={() => {this.props.handlerUseContent(REGISTER_FORM)}}>Register</span>
                         <input type="submit" value={'Login'} className={'btn btn-primary'}/>
                     </form>
                 </div>
@@ -353,6 +375,8 @@ class SinglePage extends Component {
                     return <UploadForm/>;
                 case LOGIN_FORM:
                     return <LoginForm handlerUseContent={this.handlerUseContent}/>;
+                case REGISTER_FORM:
+                    return <RegisterForm handlerUseContent={this.handlerUseContent}/>;
             }
         };
         return (

@@ -10,21 +10,26 @@ class UserController extends Controller
     public function login(Request $request) {
         error_log('LOGIN START');
 
-        if ($request->session()->get('loggedIn') !== null) {
+        $inputs = $request->all();
+
+        if ($request->session()->get('loggedIn') === $inputs['loginUsername']) {
             return 'ALREADY_LOGGED_IN';
         }
 
-        $inputs = $request->all();
         $encryptedPassword = md5($inputs['loginUsername'] . $inputs['loginPassword']);
         error_log('login encrypting password');
-        $checkGetUser = DB::table('users')
-            ->where('username', $inputs['loginUsername'])
-//            ->where('password', $inputs['$encryptedPassword']) //TODO: Replace bottom one with this, once register feature is implemented.
-            ->where('password', $inputs['loginPassword'])
-            ->first();
+        try {
+            $checkGetUser = DB::table('users')
+                ->where('username', $inputs['loginUsername'])
+                ->where('password', $encryptedPassword)
+                ->first();
+        } catch (\Exception $exception) {
+            error_log($exception->getMessage());
+        }
+
         error_log('login check user');
         if ($checkGetUser) {
-            $request->session()->put('loggedIn', true);
+            $request->session()->put('loggedIn', $inputs['loginUsername']);
             error_log('LOGIN SUCCESS');
             return 'LOGIN_SUCCESS';
         }
@@ -34,15 +39,22 @@ class UserController extends Controller
 
     public function register(Request $request) {
         $inputs = $request->all();
-        if ($inputs['loginUsername'] === null || $inputs['loginPassword'] === null) {
+        if ($inputs['regUsername'] === null || $inputs['regPassword'] === null) {
             return 'INPUT_HAS_NULL';
         }
-        $checkGetUser = DB::table('users')->where('username', $inputs['loginUsername'])->first();
+        error_log('register check has null');
+        $checkGetUser = DB::table('users')->where('username', $inputs['regUsername'])->first();
         if ($checkGetUser) {
             return 'USER_ALREADY_EXISTS';
         }
-        $encryptedPassword = md5($inputs['loginUsername'] . $inputs['loginPassword']); //Encrypt password with md5.
-        DB::table('users')->insert(['username' => $inputs['loginUsername'], 'password' => $encryptedPassword]);
-        return 'USER_REGISTER_SUCCESS';
+        error_log('register check if user exists');
+        $encryptedPassword = md5($inputs['regUsername'] . $inputs['regPassword']); //Encrypt password with md5.
+        try {
+            DB::table('users')->insert(['username' => $inputs['regUsername'], 'password' => $encryptedPassword, 'email' => $inputs['regEmail']]);
+            error_log('register insert to database');
+            return 'USER_REGISTER_SUCCESS';
+        } catch (\Exception $exception) {
+            error_log($exception->getMessage());
+        }
     }
 }

@@ -20,6 +20,9 @@ class CompsAnims {
     static slowlySlideInLoginForm() {
         $('#loginFormDiv').hide().slideToggle('slow');
     }
+    static slowlySlideInRegisterForm() {
+        $('#registerFormDiv').hide().slideToggle('slow');
+    }
 }
 
 /**
