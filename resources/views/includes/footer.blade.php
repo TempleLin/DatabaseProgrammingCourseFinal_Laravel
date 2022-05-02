@@ -32,4 +32,4 @@
 <script src="{{asset('js/jsx/upload_form.js')}}" type="text/babel"></script>
 <script src="{{asset('js/jsx/register_form.js')}}" type="text/babel"></script>
 <script src="{{asset('js/jsx/login_form.js')}}" type="text/babel"></script>
-<script src="{{asset('js/jsx/index.js')}}" type="text/babel"></script>
+<script src="{{asset('js/jsx/single_page.js')}}" type="text/babel"></script>
