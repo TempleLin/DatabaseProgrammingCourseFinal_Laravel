@@ -104,7 +104,7 @@ class UploadForm extends Component {
             // processData: false,
             // contentType: false,
             success: (data) => {
-                this.setState({'categories': data})
+                this.setState({categories: data})
                 // console.log(this.state.categories);
             },error: (data) => {
                 console.log(data);
