@@ -25,4 +25,11 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
 {{--Essential React component across all pages.--}}
+<script src="{{asset('js/utils_constants.js')}}" type="text/babel"></script>
+<script src="{{asset('js/jsx/top_nav_bar.js')}}" type="text/babel"></script>
+<script src="{{asset('js/jsx/side_nav.js')}}" type="text/babel"></script>
+<script src="{{asset('js/jsx/gallery_container.js')}}" type="text/babel"></script>
+<script src="{{asset('js/jsx/upload_form.js')}}" type="text/babel"></script>
+<script src="{{asset('js/jsx/register_form.js')}}" type="text/babel"></script>
+<script src="{{asset('js/jsx/login_form.js')}}" type="text/babel"></script>
 <script src="{{asset('js/jsx/index.js')}}" type="text/babel"></script>
