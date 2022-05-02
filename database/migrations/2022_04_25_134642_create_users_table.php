@@ -24,7 +24,7 @@ return new class extends Migration
         //Create default admin user.
         if (DB::table('users')->count() === 0) {
             $data = [
-                ['email' => 'test1234@mmail.com', 'username' => 'admin', 'password' => 'asdf1234']
+                ['email' => 'test1234@mmail.com', 'username' => 'admin', 'password' => md5('admin' . 'asdf1234')]
             ];
             DB::table('users')->insert($data);
         }

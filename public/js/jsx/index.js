@@ -15,6 +15,10 @@ const UPLOAD_FORM = Symbol('upload_form');
 const LOGIN_FORM = Symbol('login_form');
 const REGISTER_FORM = Symbol('register_form');
 
+const SIDENAV_HOME_CONTENTS = Symbol('sidenav_home_contents');
+const SIDENAV_SOUND_CATEGORIES = Symbol('sidenav_sound_categories');
+const SIDENAV_MUSIC_CATEGORIES = Symbol('sidenav_music_categories');
+
 const SOUND_TYPE_ID = '0'
 const MUSIC_TYPE_ID = '1'
 
@@ -29,15 +33,18 @@ class TopNavBar extends Component {
         return (
             <nav className={"navbar"}>
                 <div className="d-flex">
-                    <button className="btn btn btn-outline-success text-light round-btn" onClick={() => {this.props.handlerUseContent(ALL_SOUNDS_GALLERY)}}>Home</button>
+                    <button className="btn btn btn-outline-success text-light round-btn" onClick={() => {
+                        this.props.handlerUseContent(ALL_SOUNDS_GALLERY);
+                        this.props.handlerSideNavContent(SIDENAV_HOME_CONTENTS);
+                    }}>Home</button>
                     {/*<form action="/" method={'GET'} className={'top_nav_left_padding'}>*/}
                     {/*    <input className="btn btn-outline-success text-light round-btn" type="submit" value="Home"/>*/}
                     {/*</form>*/}
                     <div action="/musics" className={'top_nav_left_padding top_nav_top_padding'}>
-                        <button className="btn btn-sm btn-outline-success text-light round-btn">Musics</button>
+                        <button className="btn btn-sm btn-outline-success text-light round-btn" onClick={() => {this.props.handlerSideNavContent(SIDENAV_MUSIC_CATEGORIES)}}>Musics</button>
                     </div>
                     <div action="/sounds" className={'top_nav_left_padding top_nav_top_padding'}>
-                        <button className="btn btn-sm btn-outline-success text-light round-btn">Sounds</button>
+                        <button className="btn btn-sm btn-outline-success text-light round-btn" onClick={() => {this.props.handlerSideNavContent(SIDENAV_SOUND_CATEGORIES)}}>Sounds</button>
                     </div>
                 </div>
                 <div className="d-flex">
@@ -60,15 +67,23 @@ class SideNav extends Component {
     componentDidMount() {
         CompsAnims.slowlySlideInSideNav();
     }
+    selectContents = () => {
+        switch (this.props.sideNavContent) {
+            case SIDENAV_HOME_CONTENTS:
+                return (
+                    <div className={'sidenav'}>
+                        <a href={'#'}>About</a>
+                        <a href={'#'}>Services</a>
+                        <a href={'#'}>Clients</a>
+                        <a href={'#'}>Contact</a>
+                    </div>
+                );
+            default:
+                return <Fragment></Fragment>;
+        }
+    }
     render() {
-        return (
-            <div className={'sidenav'}>
-                <a href={'#'}>About</a>
-                <a href={'#'}>Services</a>
-                <a href={'#'}>Clients</a>
-                <a href={'#'}>Contact</a>
-            </div>
-        );
+        return this.selectContents();
     }
 }
 
@@ -326,7 +341,7 @@ class LoginForm extends Component {
                 }
             });
         });
-        $('#loginForm > .register_text').on('click', function () {
+        $('#loginForm > .register_text').on('click', () => {
             this.props.handlerUseContent(REGISTER_FORM);
         });
     }
@@ -360,14 +375,16 @@ class SinglePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            useContent: ALL_SOUNDS_GALLERY
+            useContent: ALL_SOUNDS_GALLERY,
+            sideNavContent: SIDENAV_HOME_CONTENTS
         };
     }
     //Handle to be called by child component to change state and therefore change render result.
     handlerUseContent = (comp) => { this.setState({useContent: comp}); }
+    handlerSideNavContent = (comp) => {this.setState({sideNavContent: comp});}
 
     render = () => {
-        const selectWhichContentToUse = () => {
+        const selectMainContentToUse = () => {
             switch (this.state.useContent) {
                 case ALL_SOUNDS_GALLERY:
                     return <GalleryContainer/>
@@ -381,10 +398,10 @@ class SinglePage extends Component {
         };
         return (
             <Fragment>
-                <TopNavBar handlerUseContent={this.handlerUseContent}/>
-                <SideNav/>
+                <TopNavBar handlerUseContent={this.handlerUseContent} handlerSideNavContent={this.handlerSideNavContent}/>
+                <SideNav sideNavContent={this.state.sideNavContent}/>
                 <div id={'mainContents'}>
-                    {selectWhichContentToUse()}
+                    {selectMainContentToUse()}
                     <Footer/>
                 </div>
             </Fragment>

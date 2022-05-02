@@ -18,6 +18,7 @@ class UserController extends Controller
 
         $encryptedPassword = md5($inputs['loginUsername'] . $inputs['loginPassword']);
         error_log('login encrypting password');
+        $checkGetUser = null;
         try {
             $checkGetUser = DB::table('users')
                 ->where('username', $inputs['loginUsername'])
