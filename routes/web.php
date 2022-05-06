@@ -4,7 +4,6 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
 /**
  * Note:
@@ -23,6 +22,8 @@ use Illuminate\Http\Request;
  */
 
 Route::get('/', [PageController::class, 'homePage']);
+
+Route::get('/sound_player', [PageController::class, 'soundPlayerPage']);
 
 Route::post('/upload_file', [FileController::class, 'uploadFile']);
 

@@ -23,8 +23,9 @@ class GalleryContainer extends Component{
                     allImgsJSXArray.push(
                         <div className="responsive whiteText" key={element.name}>
                             <div className="gallery">
-                                <a target="_blank">
-                                    <img src={element.thumbnail_file_loc} alt="" width="600" height="400"/>
+                                {/*Send GET request data alongside URL.*/}
+                                <a href={'/sound_player?fileLink=' + element.sound_file_loc} target={'_blank'}>
+                                    <img src={element.thumbnail_file_loc} alt="" width="600" height="400" />
                                     <div className="desc">{element.name}</div>
                                 </a>
                             </div>
