@@ -21,8 +21,8 @@
         let audio = document.querySelector("audio");
         let wave = new Wave(audio, canvas);
 
-        canvas.height = window.innerHeight - 30;
-        canvas.width = window.innerWidth - 30;
+        canvasWidthHeightResponsive();
+
 
         // // Simple example: add an animation
         // wave.addAnimation(new wave.animations.Wave());
@@ -50,7 +50,7 @@
         wave.addAnimation(new wave.animations.Cubes({
             bottom: true,
             count: 60,
-            cubeHeight: 20,
+            cubeHeight: 10,
             fillColor: { gradient: ["#FAD961", "#F76B1C"] },
             lineColor: "rgba(0,0,0,0)",
             radius: 10
@@ -58,7 +58,7 @@
         wave.addAnimation(new wave.animations.Cubes({
             top: true,
             count: 60,
-            cubeHeight: 20,
+            cubeHeight: 10,
             fillColor: { gradient: ["#FAD961", "#F76B1C"] },
             lineColor: "rgba(0,0,0,0)",
             radius: 10
@@ -96,6 +96,16 @@
 
         // Each animation is a class, so you have to new-up each animation when passed to 'addAnimation'
 
+
+        //Needs to resize canvas explicitly when window resizes.
+        $(window).on('resize', () => {
+            canvasWidthHeightResponsive();
+        });
+
+        function canvasWidthHeightResponsive() {
+            canvas.height = window.innerHeight * 0.8;
+            canvas.width = window.innerWidth * 0.8;
+        }
     </script>
 @endsection
 
