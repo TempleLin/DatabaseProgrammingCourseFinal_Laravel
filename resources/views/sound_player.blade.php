@@ -5,7 +5,7 @@
     <div id="tsparticles"></div>
     <div class="center">
         <audio controls>
-            <source src='{{$fileLink}}' type="audio/mpeg">
+            <source src='{{$fileLink}}'>
         </audio>
     </div>
 {{--    <!-- Page content -->--}}
