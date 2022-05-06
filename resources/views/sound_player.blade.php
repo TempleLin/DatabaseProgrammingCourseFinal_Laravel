@@ -1,24 +1,50 @@
 @extends('includes/template')
 
 {{--Docs for Wave.js: https://foobar404.dev/Wave.js/docs/--}}
+{{--Docs for audioplayer.js jQuery plugin: https://www.jqueryscript.net/other/Clean-Audio-Player-jQuery.html--}}
 
 @section('content')
     <link rel="stylesheet" href="{{asset('css/audio_player.css')}}">
+    <link rel="stylesheet" href="{{asset('css/lib/audioplayer.css')}}">
     <div id="tsparticles"></div>
-    <div class="audio_player_div center">
+    <div class="">
         <canvas></canvas>
         <br>
-        <audio controls>
+        <audio controls autoplay loop>
             <source src='{{$fileLink}}'>
         </audio>
+{{--        <div class="audioplayer">--}}
+{{--            <audio preload="auto" controls style="width: 0px; height: 0px; visibility: hidden;">--}}
+{{--                <source src='{{$fileLink}}'>--}}
+{{--            </audio>--}}
+{{--            <div class="audioplayer-playpause" title=""><a href="#"></a></div>--}}
+{{--            <div class="audioplayer-time audioplayer-time-current">00:00</div>--}}
+{{--            <div class="audioplayer-bar">--}}
+{{--                <div class="audioplayer-bar-loaded" style="width: 100%;"></div>--}}
+{{--                <div class="audioplayer-bar-played"></div>--}}
+{{--            </div>--}}
+{{--            <div class="audioplayer-time audioplayer-time-duration">00:56</div>--}}
+{{--            <div class="audioplayer-volume">--}}
+{{--                <div class="audioplayer-volume-button" title=""><a href="#"></a></div>--}}
+{{--                <div class="audioplayer-volume-adjust">--}}
+{{--                    <div>--}}
+{{--                        <div style="width: 100%;"></div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
     </div>
 @endsection
 
 @section('page_end_declares')
     <script src="https://cdn.jsdelivr.net/gh/foobar404/wave.js/dist/bundle.js"></script>
+    <script src="{{asset('js/lib/audioplayer.js')}}"></script>
     <script>
+        $('audio').audioPlayer();
+
         let canvas = document.querySelector("canvas");
         let audio = document.querySelector("audio");
+        // console.log(audio);
         let wave = new Wave(audio, canvas);
 
         canvasWidthHeightResponsive();
@@ -71,6 +97,8 @@
             frequencyBand: "base"
         }));
 
+
+
         // wave.addAnimation(new wave.animations.Wave({
         //     lineWidth: 10,
         //     lineColor: "blue",
@@ -104,7 +132,7 @@
 
         function canvasWidthHeightResponsive() {
             canvas.height = window.innerHeight * 0.8;
-            canvas.width = window.innerWidth * 0.8;
+            canvas.width = window.innerWidth;
         }
     </script>
 @endsection
