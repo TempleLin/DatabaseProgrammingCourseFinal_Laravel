@@ -47,10 +47,11 @@ $("#tsparticles")
             fpsLimit: 120,
             interactivity: {
                 events: {
-                    onClick: {
-                        enable: true,
-                        mode: "push",
-                    },
+                    ////Disable adding more particles when clicking the screen.
+                    // onClick: {
+                    //     enable: true,
+                    //     mode: "push",
+                    // },
                     onHover: {
                         enable: true,
                         mode: "repulse",
