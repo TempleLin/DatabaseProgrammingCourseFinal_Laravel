@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="{{asset('css/sound_play_sidebar.css')}}">
 
-    <div id="mySidebar" class="sidebar" onmouseover="toggleSidebar()" onmouseout="toggleSidebar()">
-        <a href="#"><span><i class="material-icons">info</i><span class="icon-text">&nbsp;&nbsp;&nbsp;&nbsp;about</span></span></a><br>
-        <a href="#"><i class="material-icons">spa</i><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;services</a></span>
-        </a><br>
-        <a href="#"><i class="material-icons">monetization_on</i><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;clients</span></a><br>
-        <a href="#"><i class="material-icons">email</i><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;contact<span></a>
+    <div id="mySidebar" class="sidebar">
+{{--        Link to the google material icons: https://fonts.google.com/icons--}}
+        <a href="#" class="sidebarClickable"><i class="material-icons">waves</i><span class="icon-text">&nbsp;&nbsp;&nbsp;&nbsp;Wave</span></a><br>
+        <a href="#" class="sidebarClickable"><i class="material-icons">view_in_ar</i><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Cubes</a></span><br>
+        <a href="#" class="sidebarClickable"><i class="material-icons">radio_button_unchecked</i><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Circles</span></a><br>
+        <a href="#" class="sidebarClickable"><i class="material-icons">bubble_chart</i><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Glob<span></a>
     </div>
 
     <div id="main">
@@ -42,7 +42,7 @@
         /*
         For more information about how to add different kinds of animations, search my ImportantCodingTests repository (JavaScript/WaveJS).
          */
-        wave.addAnimation(new wave.animations.Cubes({
+        wave?.addAnimation(new wave.animations.Cubes({
             bottom: true,
             count: 60,
             cubeHeight: 10,
@@ -50,7 +50,7 @@
             lineColor: "rgba(0,0,0,0)",
             radius: 10
         }));
-        wave.addAnimation(new wave.animations.Cubes({
+        wave?.addAnimation(new wave.animations.Cubes({
             top: true,
             count: 60,
             cubeHeight: 10,
@@ -58,7 +58,7 @@
             lineColor: "rgba(0,0,0,0)",
             radius: 10
         }));
-        wave.addAnimation(new wave.animations.Circles({
+        wave?.addAnimation(new wave.animations.Circles({
             lineColor: { gradient: ["#FAD961", "#FAD961", "#F76B1C"], rotate: 90 },
             lineWidth: 4,
             diameter: 20,
@@ -74,27 +74,20 @@
 
         function canvasWidthHeightResponsive() {
             //.audioplayer (The audio playing bar) is 96px, which is set under audioplayer.css. Only need to keep canvas slightly less than the audioplayer.
-            canvas.height = window.innerHeight - 130;
+            canvas.height = window.innerHeight - 100;
             canvas.width = window.innerWidth;
         }
 
         //Collapsing or expanding sidebar. (Tutorial link for the sidebar: https://medium.com/@9cv9official/create-a-beautiful-hover-triggered-expandable-sidebar-with-simple-html-css-and-javascript-9f5f80a908d1)
+        $('#mySidebar').on('mouseover', function openSidebar() {
+            document.getElementById("mySidebar").style.width = "200px";
+            document.getElementById("main").style.marginLeft = "200px";
+        });
+        $('#mySidebar').on('mouseleave', function closeSidebar() {
+            document.getElementById("mySidebar").style.width = "85px";
+            document.getElementById("main").style.marginLeft = "85px";
+        });
 
-        var mini = true;
-
-        function toggleSidebar() {
-            if (mini) {
-                console.log("opening sidebar");
-                document.getElementById("mySidebar").style.width = "250px";
-                document.getElementById("main").style.marginLeft = "250px";
-                this.mini = false;
-            } else {
-                console.log("closing sidebar");
-                document.getElementById("mySidebar").style.width = "85px";
-                document.getElementById("main").style.marginLeft = "85px";
-                this.mini = true;
-            }
-        }
     </script>
 @endsection
 
