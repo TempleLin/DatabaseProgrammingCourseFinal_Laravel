@@ -10,11 +10,14 @@
     <link rel="stylesheet" href="{{asset('css/sound_play_sidebar.css')}}">
 
     <div id="mySidebar" class="sidebar">
-{{--        Link to the google material icons: https://fonts.google.com/icons--}}
+{{--        Link to the google material icons: https://fonts.google.com/icons --}}
         <a href="#" class="sidebarClickable"><i class="material-icons">waves</i><span class="icon-text">&nbsp;&nbsp;&nbsp;&nbsp;Wave</span></a><br>
         <a href="#" class="sidebarClickable"><i class="material-icons">view_in_ar</i><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Cubes</a></span><br>
         <a href="#" class="sidebarClickable"><i class="material-icons">radio_button_unchecked</i><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Circles</span></a><br>
-        <a href="#" class="sidebarClickable"><i class="material-icons">bubble_chart</i><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Glob<span></a>
+        <a href="#" class="sidebarClickable"><i class="material-icons">bubble_chart</i><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Glob<span></a><br>
+        <a href="#" class="sidebarClickable"><i class="material-icons">light_mode</i><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Shine<span></a><br>
+        <a href="#" class="sidebarClickable"><i class="material-icons">square</i><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Square<span></a><br>
+        <a href="#" class="sidebarClickable"><i class="material-icons">water_drop</i><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Arcs<span></a><br>
     </div>
 
     <div id="main">
