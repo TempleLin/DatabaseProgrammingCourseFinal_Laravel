@@ -2,7 +2,7 @@ class GalleryContainer extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            allImgs: ''
+            contents: ''
         };
     }
     componentDidMount() {
@@ -34,7 +34,7 @@ class GalleryContainer extends Component{
                 });
                 console.log(allImgsJSXArray);
                 // $('#mainContents').append(allImgsStr);
-                this.setState({allImgs: allImgsJSXArray});
+                this.setState({contents: allImgsJSXArray});
             },error:function(data){
                 console.log(data);
             }
@@ -43,7 +43,7 @@ class GalleryContainer extends Component{
     render() {
         return(
             <Fragment>
-                {this.state.allImgs}
+                {this.state.contents}
                 {/*<div className="responsive whiteText">*/}
                 {/*    <div className="gallery">*/}
                 {/*        <a target="_blank" href="img_5terre.jpg">*/}

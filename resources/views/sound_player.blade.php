@@ -5,8 +5,19 @@
 
 @section('content')
     <link rel="stylesheet" href="{{asset('css/lib/audioplayer.css')}}">
-    <div id="tsparticles"></div>
-    <div class="">
+{{--    Icons for the sidebar.--}}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="{{asset('css/sound_play_sidebar.css')}}">
+
+    <div id="mySidebar" class="sidebar" onmouseover="toggleSidebar()" onmouseout="toggleSidebar()">
+        <a href="#"><span><i class="material-icons">info</i><span class="icon-text">&nbsp;&nbsp;&nbsp;&nbsp;about</span></span></a><br>
+        <a href="#"><i class="material-icons">spa</i><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;services</a></span>
+        </a><br>
+        <a href="#"><i class="material-icons">monetization_on</i><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;clients</span></a><br>
+        <a href="#"><i class="material-icons">email</i><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;contact<span></a>
+    </div>
+
+    <div id="main">
         <canvas></canvas>
         <br>
         <audio controls loop>
@@ -65,6 +76,24 @@
             //.audioplayer (The audio playing bar) is 96px, which is set under audioplayer.css. Only need to keep canvas slightly less than the audioplayer.
             canvas.height = window.innerHeight - 130;
             canvas.width = window.innerWidth;
+        }
+
+        //Collapsing or expanding sidebar. (Tutorial link for the sidebar: https://medium.com/@9cv9official/create-a-beautiful-hover-triggered-expandable-sidebar-with-simple-html-css-and-javascript-9f5f80a908d1)
+
+        var mini = true;
+
+        function toggleSidebar() {
+            if (mini) {
+                console.log("opening sidebar");
+                document.getElementById("mySidebar").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+                this.mini = false;
+            } else {
+                console.log("closing sidebar");
+                document.getElementById("mySidebar").style.width = "85px";
+                document.getElementById("main").style.marginLeft = "85px";
+                this.mini = true;
+            }
         }
     </script>
 @endsection
