@@ -18,13 +18,13 @@ return new class extends Migration
 //            $table->timestamps();
             $table->string('email', 50);
             $table->string('username', 50);
-            $table->string('password', 50);
+            $table->string('password');
         });
 
         //Create default admin user.
         if (DB::table('users')->count() === 0) {
             $data = [
-                ['email' => 'test1234@mmail.com', 'username' => 'admin', 'password' => md5('admin' . 'asdf1234')]
+                ['email' => 'test1234@mmail.com', 'username' => 'admin', 'password' => password_hash('admin' . 'asdf1234', null)]
             ];
             DB::table('users')->insert($data);
         }

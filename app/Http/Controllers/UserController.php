@@ -16,7 +16,7 @@ class UserController extends Controller
             return 'ALREADY_LOGGED_IN';
         }
 
-        $encryptedPassword = md5($inputs['loginUsername'] . $inputs['loginPassword']);
+        $encryptedPassword = password_hash($inputs['loginUsername'] . $inputs['loginPassword'], null);
         error_log('login encrypting password');
         $checkGetUser = null;
         try {
@@ -34,6 +34,7 @@ class UserController extends Controller
             error_log('LOGIN SUCCESS');
             return 'LOGIN_SUCCESS';
         }
+
         error_log('login failed');
         return 'LOGIN_FAILED';
     }
@@ -49,7 +50,7 @@ class UserController extends Controller
             return 'USER_ALREADY_EXISTS';
         }
         error_log('register check if user exists');
-        $encryptedPassword = md5($inputs['regUsername'] . $inputs['regPassword']); //Encrypt password with md5.
+        $encryptedPassword = password_hash($inputs['regUsername'] . $inputs['regPassword'], null); //Encrypt password with password_hash.
         try {
             DB::table('users')->insert(['username' => $inputs['regUsername'], 'password' => $encryptedPassword, 'email' => $inputs['regEmail']]);
             error_log('register insert to database');

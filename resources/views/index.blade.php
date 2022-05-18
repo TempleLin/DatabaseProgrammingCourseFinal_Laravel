@@ -4,6 +4,9 @@
     <link rel="stylesheet" href="{{asset('css/responsive_image_gallery.css')}}">
     <div id="tsparticles"></div>
 
+{{--    True(1) if logged in. else 0.--}}
+    <div style="display:none;" id="loggedIn">{{$loggedIn}}</div>
+
     <!-- Page content -->
     <div class="main">
         <div id="root"></div>

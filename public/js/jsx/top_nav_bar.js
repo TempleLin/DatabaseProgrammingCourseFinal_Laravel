@@ -31,7 +31,15 @@ class TopNavBar extends Component {
                     {/*</form>*/}
                     <div action="/login_register">
                         <button className="btn btn-outline-success text-light form-inline round-btn"
-                                onClick={() => {this.props.handlerUseContent(LOGIN_FORM)}}>Login/Register</button>
+                                onClick={() => {
+                                    if (!$('#loggedIn')) {
+                                        this.props.handlerUseContent(LOGIN_FORM)
+                                    } else {
+                                        location.reload();
+                                    }
+                                }}>
+                            {(!$('#loggedIn'))? <span>Login/Register</span> : <span>Logout</span>}
+                        </button>
                     </div>
                 </div>
             </nav>

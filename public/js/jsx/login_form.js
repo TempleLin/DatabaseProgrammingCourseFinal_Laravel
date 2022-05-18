@@ -21,6 +21,9 @@ class LoginForm extends Component {
                 contentType: false, //Forces jQuery not to add a Content-Type header.
                 success:function (data) {
                     console.log('Login result message: ' + data);
+                    if (data === 'LOGIN_SUCCESS') {
+                        location.reload();
+                    }
                 },error:function(data){
                     console.log(data);
                 }
