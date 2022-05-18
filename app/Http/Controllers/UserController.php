@@ -16,14 +16,14 @@ class UserController extends Controller
             return 'ALREADY_LOGGED_IN';
         }
 
-        $encryptedPassword = password_hash($inputs['loginUsername'] . $inputs['loginPassword'], null);
         error_log('login encrypting password');
-        $checkGetUser = null;
+        $checkGetUser = false;
         try {
-            $checkGetUser = DB::table('users')
+            $getUser = DB::table('users')
                 ->where('username', $inputs['loginUsername'])
-                ->where('password', $encryptedPassword)
                 ->first();
+            error_log('User Password from table: ' . $getUser->password);
+            $checkGetUser = password_verify($inputs['loginPassword'], $getUser->password);
         } catch (\Exception $exception) {
             error_log($exception->getMessage());
         }
@@ -39,6 +39,15 @@ class UserController extends Controller
         return 'LOGIN_FAILED';
     }
 
+    public function logout(Request $request) {
+        try {
+            $request->session()->forget('loggedIn');
+            return 'LOGOUT_SUCCESS';
+        } catch (\Exception $e) {
+            return 'LOGOUT_FAILED';
+        }
+    }
+
     public function register(Request $request) {
         $inputs = $request->all();
         if ($inputs['regUsername'] === null || $inputs['regPassword'] === null) {
@@ -50,7 +59,7 @@ class UserController extends Controller
             return 'USER_ALREADY_EXISTS';
         }
         error_log('register check if user exists');
-        $encryptedPassword = password_hash($inputs['regUsername'] . $inputs['regPassword'], null); //Encrypt password with password_hash.
+        $encryptedPassword = password_hash($inputs['regPassword'], null); //Encrypt password with password_hash.
         try {
             DB::table('users')->insert(['username' => $inputs['regUsername'], 'password' => $encryptedPassword, 'email' => $inputs['regEmail']]);
             error_log('register insert to database');

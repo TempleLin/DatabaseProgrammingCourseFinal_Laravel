@@ -32,13 +32,30 @@ class TopNavBar extends Component {
                     <div action="/login_register">
                         <button className="btn btn-outline-success text-light form-inline round-btn"
                                 onClick={() => {
-                                    if (!$('#loggedIn')) {
+                                    if ($('#loggedIn').text() !== '1') {
                                         this.props.handlerUseContent(LOGIN_FORM)
                                     } else {
-                                        location.reload();
+                                        $.ajax({
+                                            headers: {
+                                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') //CSRF Token related to Laravel.
+                                            },
+                                            url:'/logout',
+                                            method: "GET",
+                                            dataType: 'text', //Response to expect.
+                                            data: null,
+                                            // processData: false, //Stops jQuery processing any of the data.
+                                            // contentType: false, //Forces jQuery not to add a Content-Type header.
+                                            success:function (data) {
+                                                if (data === 'LOGOUT_SUCCESS') {
+                                                    location.reload();
+                                                }
+                                            },error:function(data){
+                                                console.log(data);
+                                            }
+                                        });
                                     }
                                 }}>
-                            {(!$('#loggedIn'))? <span>Login/Register</span> : <span>Logout</span>}
+                            {($('#loggedIn').text() !== '1')? <span>Login/Register</span> : <span>Logout</span>}
                         </button>
                     </div>
                 </div>

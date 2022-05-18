@@ -33,4 +33,6 @@ Route::get('/get_all_uploads', [FileController::class, 'getAllUploads']);
 
 Route::post('/login', [UserController::class, 'login']);
 
+Route::get('/logout', [UserController::class, 'logout']);
+
 Route::post('/register', [UserController::class, 'register']);
