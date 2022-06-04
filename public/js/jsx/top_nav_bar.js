@@ -9,13 +9,6 @@ class TopNavBar extends Component {
         return (
             <nav className={"navbar"}>
                 <div className="d-flex">
-                    <button className="btn btn btn-outline-success text-light round-btn" onClick={() => {
-                        this.props.handlerUseContent(ALL_SOUNDS_GALLERY);
-                        this.props.handlerSideNavContent(SIDENAV_HOME_CONTENTS);
-                    }}>Home</button>
-                    {/*<form action="/" method={'GET'} className={'top_nav_left_padding'}>*/}
-                    {/*    <input className="btn btn-outline-success text-light round-btn" type="submit" value="Home"/>*/}
-                    {/*</form>*/}
                     <div action="/musics" className={'top_nav_left_padding top_nav_top_padding'}>
                         <button className="btn btn-sm btn-outline-success text-light round-btn"
                                 onClick={() => {
@@ -33,10 +26,6 @@ class TopNavBar extends Component {
                 </div>
                 <div className="d-flex">
                     <button className="btn btn-outline-success text-light round-btn" onClick={() => {this.props.handlerUseContent(UPLOAD_FORM)}}>Upload</button>
-                    {/*<form action="/uploading" method={'GET'}>*/}
-                    {/*    <input className="btn btn-outline-success text-light round-btn" type="submit" value="Upload"*/}
-                    {/*           onClick={this.props.handleUseImageContainer}/>*/}
-                    {/*</form>*/}
                     <div action="/login_register">
                         <button className="btn btn-outline-success text-light form-inline round-btn"
                                 onClick={() => {

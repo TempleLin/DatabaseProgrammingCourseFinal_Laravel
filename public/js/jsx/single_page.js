@@ -35,6 +35,10 @@ class SinglePage extends Component {
         };
         return (
             <Fragment>
+                <a className={'navbar_brand whiteText'} onClick={() => {
+                    this.handlerUseContent(ALL_SOUNDS_GALLERY);
+                    this.handlerSideNavContent(SIDENAV_HOME_CONTENTS);
+                }}><h4>SoundHeaven</h4></a>
                 <TopNavBar handlerUseContent={this.handlerUseContent} handlerSideNavContent={this.handlerSideNavContent}/>
                 <SideNav sideNavContent={this.state.sideNavContent}/>
                 <div id={'mainContents'}>

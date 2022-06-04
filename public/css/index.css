@@ -20,6 +20,16 @@ body {
   padding: 0.5rem 0px 0px;
 }
 
+.navbar_brand {
+  font-family: "Black Han Sans", sans-serif;
+  text-decoration: none;
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 9999;
+  cursor: pointer;
+}
+
 .form-inline {
   margin-left: 3%;
 }
