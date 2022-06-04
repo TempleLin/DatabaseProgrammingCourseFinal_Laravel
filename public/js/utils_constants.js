@@ -12,6 +12,8 @@ const {
 //'Symbol' is similar to enum in JS.
 const ALL_SOUNDS_GALLERY = Symbol('all_sounds_gallery');
 const MUSICS_GALLERY = Symbol('musics_gallery');
+const SOUNDS_GALLERY = Symbol('sounds_gallery');
+
 const UPLOAD_FORM = Symbol('upload_form');
 const LOGIN_FORM = Symbol('login_form');
 const REGISTER_FORM = Symbol('register_form');

@@ -23,6 +23,8 @@ class SinglePage extends Component {
                     return <GalleryContainer/>;
                 case MUSICS_GALLERY:
                     return <MusicsContainer/>;
+                case SOUNDS_GALLERY:
+                    return <SoundsContainer/>;
                 case UPLOAD_FORM:
                     return <UploadForm/>;
                 case LOGIN_FORM:

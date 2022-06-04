@@ -18,6 +18,7 @@
     <script src="{{asset('js/jsx/top_nav_bar.js')}}" type="text/babel"></script>
     <script src="{{asset('js/jsx/side_nav.js')}}" type="text/babel"></script>
     <script src="{{asset('js/jsx/musics_container.js')}}" type="text/babel"></script>
+    <script src="{{asset('js/jsx/sounds_container.js')}}" type="text/babel"></script>
     <script src="{{asset('js/jsx/gallery_container.js')}}" type="text/babel"></script>
     <script src="{{asset('js/jsx/upload_form.js')}}" type="text/babel"></script>
     <script src="{{asset('js/jsx/register_form.js')}}" type="text/babel"></script>

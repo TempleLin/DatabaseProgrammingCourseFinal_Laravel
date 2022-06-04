@@ -33,6 +33,8 @@ Route::get('/get_all_uploads', [FileController::class, 'getAllUploads']);
 
 Route::get('/get_music_uploads', [FileController::class, 'getMusicUploads']);
 
+Route::get('/get_sound_uploads', [FileController::class, 'getSoundUploads']);
+
 Route::post('/login', [UserController::class, 'login']);
 
 Route::get('/logout', [UserController::class, 'logout']);

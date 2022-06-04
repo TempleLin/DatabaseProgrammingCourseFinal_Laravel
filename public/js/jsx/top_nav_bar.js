@@ -27,6 +27,7 @@ class TopNavBar extends Component {
                         <button className="btn btn-sm btn-outline-success text-light round-btn"
                                 onClick={() => {
                                     this.props.handlerSideNavContent(SIDENAV_SOUND_CATEGORIES);
+                                    this.props.handlerUseContent(SOUNDS_GALLERY);
                                 }}>Sounds</button>
                     </div>
                 </div>
