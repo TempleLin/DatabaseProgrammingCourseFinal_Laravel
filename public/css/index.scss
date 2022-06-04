@@ -30,7 +30,7 @@ body {
 .navbar_brand {
     font-family: "Black Han Sans", sans-serif;
     text-decoration: none;
-    position: absolute;
+    position: fixed;
     left: 1rem;
     top: 1rem;
     z-index: 9999;
@@ -38,6 +38,12 @@ body {
     :hover, :visited {
         color: white;
     }
+}
+
+.top_navbar {
+    //"padding-left" of .main in sidebar_menu.css is 160 px.
+    width: calc(100% - 160px);
+    position: fixed;
 }
 
 //Give left and right space to the navbar.
@@ -127,7 +133,7 @@ $roundBorderRem: 3rem;
     background: rgb(81,0,87);
     background: radial-gradient(circle, rgba(81,0,87,1) 13%, rgba(14,20,50,1) 89%);
     width: 100%;
-    height: 80vh;
+    height: 150vh;
     #landing_page_contents {
         .landing_page_text1 {
             font-size: 5rem;

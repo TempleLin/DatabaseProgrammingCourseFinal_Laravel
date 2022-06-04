@@ -23,7 +23,7 @@ body {
 .navbar_brand {
   font-family: "Black Han Sans", sans-serif;
   text-decoration: none;
-  position: absolute;
+  position: fixed;
   left: 1rem;
   top: 1rem;
   z-index: 9999;
@@ -31,6 +31,11 @@ body {
 }
 .navbar_brand :hover, .navbar_brand :visited {
   color: white;
+}
+
+.top_navbar {
+  width: calc(100% - 160px);
+  position: fixed;
 }
 
 .form-inline {
@@ -113,7 +118,7 @@ Slight padding offsets to the navbar buttons on top left corner.
   background: #510057;
   background: radial-gradient(circle, #510057 13%, #0e1432 89%);
   width: 100%;
-  height: 80vh;
+  height: 150vh;
 }
 #landing_page_bg #landing_page_contents {
   padding-left: 10rem;
