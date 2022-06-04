@@ -35,6 +35,9 @@ body {
     top: 1rem;
     z-index: 9999;
     cursor: pointer;
+    :hover, :visited {
+        color: white;
+    }
 }
 
 //Give left and right space to the navbar.

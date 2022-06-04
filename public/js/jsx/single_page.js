@@ -8,7 +8,7 @@ class SinglePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            useContent: ALL_SOUNDS_GALLERY,
+            useContent: HOME_PAGE,
             sideNavContent: SIDENAV_HOME_CONTENTS
         };
     }
@@ -19,8 +19,8 @@ class SinglePage extends Component {
     render = () => {
         const selectMainContentToUse = () => {
             switch (this.state.useContent) {
-                case ALL_SOUNDS_GALLERY:
-                    return <GalleryContainer/>;
+                case HOME_PAGE:
+                    return <HomePage/>;
                 case MUSICS_GALLERY:
                     return <MusicsContainer/>;
                 case SOUNDS_GALLERY:
@@ -36,7 +36,7 @@ class SinglePage extends Component {
         return (
             <Fragment>
                 <a className={'navbar_brand whiteText'} onClick={() => {
-                    this.handlerUseContent(ALL_SOUNDS_GALLERY);
+                    this.handlerUseContent(HOME_PAGE);
                     this.handlerSideNavContent(SIDENAV_HOME_CONTENTS);
                 }}><h4>SoundHeaven</h4></a>
                 <TopNavBar handlerUseContent={this.handlerUseContent} handlerSideNavContent={this.handlerSideNavContent}/>

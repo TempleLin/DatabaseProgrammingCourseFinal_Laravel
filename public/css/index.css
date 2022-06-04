@@ -29,6 +29,9 @@ body {
   z-index: 9999;
   cursor: pointer;
 }
+.navbar_brand :hover, .navbar_brand :visited {
+  color: white;
+}
 
 .form-inline {
   margin-left: 3%;

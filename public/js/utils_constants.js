@@ -10,7 +10,7 @@ const {
  */
 
 //'Symbol' is similar to enum in JS.
-const ALL_SOUNDS_GALLERY = Symbol('all_sounds_gallery');
+const HOME_PAGE = Symbol('home_page');
 const MUSICS_GALLERY = Symbol('musics_gallery');
 const SOUNDS_GALLERY = Symbol('sounds_gallery');
 
