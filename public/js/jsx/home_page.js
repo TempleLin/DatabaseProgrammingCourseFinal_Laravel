@@ -43,15 +43,14 @@ class HomePage extends Component{
     render() {
         return(
             <Fragment>
-                {this.state.contents}
-                {/*<div className="responsive whiteText">*/}
-                {/*    <div className="gallery">*/}
-                {/*        <a target="_blank" href="img_5terre.jpg">*/}
-                {/*            <img src="https://source.unsplash.com/random/600x600?water" alt="Cinque Terre" width="600" height="400"/>*/}
-                {/*        </a>*/}
-                {/*        <div className="desc">Add a description of the image here</div>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+                <div id="landing_page_bg">
+                    <div id={'landing_page_contents'}>
+                        <p className={'whiteText landing_page_text1'}>為你的創作<br/>來點節拍跳動</p>
+                        <p className={'whiteText landing_page_text2'}>讓你的靈感<br/>用音樂來呈現</p>
+                        <button className={'btn btn-primary'}>立即加入SoundHeaven</button>
+                    </div>
+                </div>
+                {/*{this.state.contents}*/}
             </Fragment>
         );
     }

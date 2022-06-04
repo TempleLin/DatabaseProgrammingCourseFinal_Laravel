@@ -122,3 +122,23 @@ $roundBorderRem: 3rem;
     margin-bottom: 1rem;
     text-align: right;
 }
+
+#landing_page_bg {
+    background: rgb(81,0,87);
+    background: radial-gradient(circle, rgba(81,0,87,1) 13%, rgba(14,20,50,1) 89%);
+    width: 100%;
+    height: 80vh;
+    #landing_page_contents {
+        .landing_page_text1 {
+            font-size: 5rem;
+        }
+        .landing_page_text2 {
+            font-size: 2.2rem;
+        }
+        button {
+            border-radius: 3rem;
+        }
+        padding-left: 10rem;
+        padding-top: 10rem;
+    }
+}
