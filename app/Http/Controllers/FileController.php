@@ -120,4 +120,18 @@ class FileController extends Controller
         $result = DB::select("SELECT * FROM uploads");
         return $result;
     }
+
+    public function getMusicUploads() {
+        $result = DB::table('uploads')
+            ->where('sound_type', 1)
+            ->get();
+        return $result;
+    }
+
+    public function getSoundUploads() {
+        $result = DB::table('uploads')
+            ->where('sound_type', 0)
+            ->get();
+        return $result;
+    }
 }

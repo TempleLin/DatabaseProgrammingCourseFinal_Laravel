@@ -20,7 +20,9 @@ class SinglePage extends Component {
         const selectMainContentToUse = () => {
             switch (this.state.useContent) {
                 case ALL_SOUNDS_GALLERY:
-                    return <GalleryContainer/>
+                    return <GalleryContainer/>;
+                case MUSICS_GALLERY:
+                    return <MusicsContainer/>;
                 case UPLOAD_FORM:
                     return <UploadForm/>;
                 case LOGIN_FORM:

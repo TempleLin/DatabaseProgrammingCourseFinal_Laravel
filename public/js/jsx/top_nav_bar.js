@@ -17,10 +17,17 @@ class TopNavBar extends Component {
                     {/*    <input className="btn btn-outline-success text-light round-btn" type="submit" value="Home"/>*/}
                     {/*</form>*/}
                     <div action="/musics" className={'top_nav_left_padding top_nav_top_padding'}>
-                        <button className="btn btn-sm btn-outline-success text-light round-btn" onClick={() => {this.props.handlerSideNavContent(SIDENAV_MUSIC_CATEGORIES)}}>Musics</button>
+                        <button className="btn btn-sm btn-outline-success text-light round-btn"
+                                onClick={() => {
+                                    this.props.handlerSideNavContent(SIDENAV_MUSIC_CATEGORIES);
+                                    this.props.handlerUseContent(MUSICS_GALLERY);
+                                }}>Musics</button>
                     </div>
                     <div action="/sounds" className={'top_nav_left_padding top_nav_top_padding'}>
-                        <button className="btn btn-sm btn-outline-success text-light round-btn" onClick={() => {this.props.handlerSideNavContent(SIDENAV_SOUND_CATEGORIES)}}>Sounds</button>
+                        <button className="btn btn-sm btn-outline-success text-light round-btn"
+                                onClick={() => {
+                                    this.props.handlerSideNavContent(SIDENAV_SOUND_CATEGORIES);
+                                }}>Sounds</button>
                     </div>
                 </div>
                 <div className="d-flex">

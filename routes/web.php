@@ -31,6 +31,8 @@ Route::get('/get_categories', [FileController::class, 'getCategories']);
 
 Route::get('/get_all_uploads', [FileController::class, 'getAllUploads']);
 
+Route::get('/get_music_uploads', [FileController::class, 'getMusicUploads']);
+
 Route::post('/login', [UserController::class, 'login']);
 
 Route::get('/logout', [UserController::class, 'logout']);
