@@ -134,4 +134,8 @@ Slight padding offsets to the navbar buttons on top left corner.
   border-radius: 3rem;
 }
 
+#mainContents {
+  padding-top: 3rem;
+}
+
 /*# sourceMappingURL=index.css.map */
