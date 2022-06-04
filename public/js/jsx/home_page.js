@@ -101,6 +101,39 @@ class HomePage extends Component{
                             </a>
                         </div>
                     </div>
+                    <p className={'whiteText landing_page_text3'}>加入SoundHeaven</p>
+                    <div className="landingpage_signupform">
+                        <div className="row">
+                            <div className="col-md-8 offset-md-2 text-left">
+                                <p className={'whiteText'}>電子郵件</p>
+                                <div className="input-group mb-3">
+                                    <input type="text" className="form-control" aria-label="Sizing example input"
+                                           aria-describedby="inputGroup-sizing-default"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-8 offset-md-2 text-left">
+                                <p className={'whiteText'}>使用者名稱</p>
+                                <div className="input-group mb-3">
+                                    <input type="text" className="form-control" aria-label="Sizing example input"
+                                           aria-describedby="inputGroup-sizing-default"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-8 offset-md-2 text-left">
+                                <p className={'whiteText'}>密碼</p>
+                                <div className="input-group mb-3">
+                                    <input type="text" className="form-control" aria-label="Sizing example input"
+                                           aria-describedby="inputGroup-sizing-default"/>
+                                </div>
+                            </div>
+                            <div className="col-md-8 offset-md-2 text-end">
+                                <a className="btn btn-primary" href="">送出</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 {/*{this.state.contents}*/}
             </Fragment>
