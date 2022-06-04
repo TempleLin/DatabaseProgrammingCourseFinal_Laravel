@@ -114,24 +114,27 @@ Slight padding offsets to the navbar buttons on top left corner.
   text-align: right;
 }
 
-#landing_page_bg {
+#landing_page_contents #landing_page_bg {
+  width: 100%;
+  height: 70vh;
   background: #510057;
   background: radial-gradient(circle, #510057 13%, #0e1432 89%);
-  width: 100%;
-  height: 150vh;
-}
-#landing_page_bg #landing_page_contents {
   padding-left: 10rem;
   padding-top: 10rem;
 }
-#landing_page_bg #landing_page_contents .landing_page_text1 {
+#landing_page_contents #landing_page_bg .landing_page_text1 {
   font-size: 5rem;
 }
-#landing_page_bg #landing_page_contents .landing_page_text2 {
+#landing_page_contents #landing_page_bg .landing_page_text2 {
   font-size: 2.2rem;
 }
-#landing_page_bg #landing_page_contents button {
+#landing_page_contents #landing_page_bg button {
   border-radius: 3rem;
+}
+#landing_page_contents .landing_page_text3 {
+  padding-top: 2rem;
+  text-align: center;
+  font-size: 2.2rem;
 }
 
 #mainContents {
