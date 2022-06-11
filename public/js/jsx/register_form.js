@@ -19,7 +19,9 @@ class RegisterForm extends Component {
                 processData: false, //Stops jQuery processing any of the data.
                 contentType: false, //Forces jQuery not to add a Content-Type header.
                 success: function (data) {
-                    console.log('Login result message: ' + data);
+                    console.log('Register result message: ' + data);
+                    alert('Register success!');
+                    location.reload();
                 }, error: function (data) {
                     console.log(data);
                 }
